@@ -2,7 +2,7 @@ from math import cos, radians, sin
 
 import numpy as np
 
-from rsuanalyzer.lib.calc_lig_end import calc_lig_end
+from rsuanalyzer.calc_lig_end import calc_lig_end
 
 
 def cos_rad(deg):
