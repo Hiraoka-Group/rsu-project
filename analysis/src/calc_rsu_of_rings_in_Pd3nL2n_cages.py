@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from rsuanalyzer.calc_rsu import calc_rsu
+from rsuanalyzer.rsu import calc_rsu
 
 
 @dataclass
