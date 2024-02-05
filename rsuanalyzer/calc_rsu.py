@@ -20,9 +20,9 @@ def calc_rsu(
     - conf_id_of_ring (str): The conformation ID of the ring. 
       This should contain the same number of connection types as the 
       number of ligands in the ring. For example, for a 2-membered ring, 
-      it would be "RR(FF)RL(FF)". Note that for a chain, the 
+      it would be "RRFFRLFF". Note that for a chain, the 
       conformation ID would contain n-1 connection types for a chain of 
-      n ligands (e.g. "RR(FF)RL").
+      n ligands (e.g. "RRFFRL").
     - theta (float): Tilting angles in ligands in degrees.
     - delta_ (float): N-Pd-N angles in degrees.
 
@@ -49,7 +49,7 @@ def ring_to_chains(conf_id_of_ring: str) -> list[str]:
     - conf_id_of_ring (str): The conformation ID of the ring. 
       This should contain the same number of connection types as the 
       number of ligands in the ring. For example, for a 2-membered ring, 
-      it would be "RR(FF)RL(FF)".
+      it would be "RRFFRLFF".
 
     Returns:
     - list[str]: The conformation IDs of the chains.
