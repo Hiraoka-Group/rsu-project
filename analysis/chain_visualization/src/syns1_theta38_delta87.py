@@ -1,16 +1,20 @@
 """
-Visualize the chain of a syn-S-1 with theta=38 and delta=87, 
-which is the Pd4L4 structure in Pd12L8 cage measured by X-ray 
-crystallography.
+Visualize the chain of a syn-S-1 with theta=38 and delta=87.
+Note that the depicted positions of C atoms provide a general 
+representation rather than an exact depiction. In the context 
+of the RSU analysis, only the positions of the metal atoms are crucial.
 """
+
+import os
 
 import matplotlib.pyplot as plt
 
 from chainvisualizer.chain import calc_carbon_positions, calc_metal_positions
 from chainvisualizer.utils import limit_axis, transpose_to_xyz
 
-CONF_ID = "RRFFLLBBRRFFLLBB"  # syn-S-1
-THETA = 38  # by X-ray crystallography
+NAME = "syn-S-1"
+CONF_ID = "RRFFLLBBRRFFLLBB"
+THETA = 38
 DELTA = 87
 
 metal_positions = calc_metal_positions(CONF_ID, THETA, DELTA)
@@ -38,4 +42,11 @@ ax.set_zlabel('Z')
 limit_axis(ax, 3)
 ax.view_init(20, -160, 0)  # (elevation, azimuth, rotate by z-axis)
 
+FOLDER = "analysis/chain_visualization/output/"
+if not os.path.exists(FOLDER):
+    os.makedirs(FOLDER)
+
+filename = f"{NAME} (theta={THETA}, delta={DELTA}).pdf"
+
+plt.savefig(os.path.join(FOLDER, filename))
 plt.show()
