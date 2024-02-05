@@ -1,0 +1,8 @@
+# INPUT
+Name            : syn-S-1
+Conformation ID : RR(FF)LL(BB)RR(FF)LL(BB)
+Theta /deg.     : 38
+Delta /deg.     : 87
+
+# OUTPUT
+Calculated RSU  : 0.010227589913371738
