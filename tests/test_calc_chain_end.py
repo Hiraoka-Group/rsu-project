@@ -2,7 +2,7 @@ from math import cos, radians, sin
 
 import numpy as np
 
-from rsuanalyzer.calc_chain_end import calc_chain_end, calc_con_rot
+from rsuanalyzer.chain import calc_chain_end, calc_con_rot
 
 
 def sin_deg(deg):
