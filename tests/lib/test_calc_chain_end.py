@@ -73,6 +73,6 @@ def test_calc_con_rot_case_5():
 # case 1: (conf_id, theta, delta_) = ("RR(FF)RL", 30, 90)
 
 def test_calc_chain_end_case_1():
-    x, rot = calc_chain_end("RR(FF)RL", 30, 90)
+    x, rot = calc_chain_end("RRFFRL", 30, 90)
     EXPECTED_X = [1.2, 1.3, -1.2]
     assert np.allclose(x, EXPECTED_X, atol=1e-1)
