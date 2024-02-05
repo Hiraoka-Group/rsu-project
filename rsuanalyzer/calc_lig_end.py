@@ -1,4 +1,4 @@
-from typing import Literal
+from typing import Literal, TypedDict
 
 import numpy as np
 from scipy.spatial.transform import Rotation as R
@@ -30,13 +30,57 @@ def calc_lig_end(
     if not 0 <= theta <= 90:
         raise ValueError(f"Invalid theta: {theta}")
 
+    vecs_rots = calc_inner_vecs_and_rots(lig_type, theta)
+
+    x_ac_in_system_a = vecs_rots["x_ab_in_system_a"] + \
+        vecs_rots["x_bc_in_system_a"]
+    rot_ac = vecs_rots["rot_ab1"] * vecs_rots["rot_b1b2"] \
+        * vecs_rots["rot_b2c1"] * vecs_rots["rot_c1c2"]
+
+    return x_ac_in_system_a, rot_ac
+
+
+class InnerVecsAndRots(TypedDict):
+    x_ab_in_system_a: np.ndarray
+    x_bc_in_system_a: np.ndarray
+    rot_ab1: R
+    rot_b1b2: R
+    rot_b2c1: R
+    rot_c1c2: R
+
+
+def calc_inner_vecs_and_rots(
+        lig_type: Literal["RR", "RL", "LR", "LL"], theta: float
+        ) -> InnerVecsAndRots:
+    """
+    Calculate the inner vectors and rotations of the ligand.
+
+    Args:
+    - lig_type (Literal["RR", "RL", "LR", "LL"]): Rotation directions of
+    each of the two C-C bonds. "R" means clockwise, "L" means
+    counterclockwise.
+    - theta (float): Angle in degrees.
+    
+    Returns:
+    - InnerVecsAndRots: Inner vectors and rotations of the ligand: 
+    dictionary with the following keys:
+        - x_ab_in_system_a (np.ndarray): Position vector of point B 
+        measured from coordinate system A.
+        - x_bc_in_system_a (np.ndarray): Vector from B to C
+        measured from coordinate system A.
+        - rot_ab1 (R): Rotation from coordinate system A to B1.
+        - rot_b1b2 (R): Rotation from B1 to B2.
+        - rot_b2c1 (R): Rotation from B2 to C1.
+        - rot_c1c2 (R): Rotation from C1 to C2.
+    """
     # j and k represent the rotation directions.
     j, k = lig_type_to_signs(lig_type)
     
-    x_ab = np.array([1, 0, 0])
+    x_ab_in_system_a = np.array([1, 0, 0])
     rot_ab1 = R.from_euler('x', j * theta, degrees=True)
     rot_b1b2 = R.from_euler('z', j * 60, degrees=True)
     rot_b2c1 = R.from_euler('x', k * theta, degrees=True)
+    x_bc_in_system_a = (rot_ab1 * rot_b1b2).apply([1, 0, 0])
 
     if lig_type in ("RR", "LL"):
         # If lig_type is RR or LL, rotate 180 degrees around x-axis
@@ -46,11 +90,15 @@ def calc_lig_end(
     else:
         rot_c1c2 = R.from_euler('x', 0, degrees=True)
     
-    x_ac = x_ab + (rot_ab1 * rot_b1b2).apply([1, 0, 0])
-    rot_ac = rot_ab1 * rot_b1b2 * rot_b2c1 * rot_c1c2
-
-    return x_ac, rot_ac
-
+    return {
+        "x_ab_in_system_a": x_ab_in_system_a,
+        "x_bc_in_system_a": x_bc_in_system_a,
+        "rot_ab1": rot_ab1,
+        "rot_b1b2": rot_b1b2,
+        "rot_b2c1": rot_b2c1,
+        "rot_c1c2": rot_c1c2
+    }
+    
 
 def lig_type_to_signs(
         lig_type: Literal["RR", "RL", "LR", "LL"]) -> tuple[int, int]:
