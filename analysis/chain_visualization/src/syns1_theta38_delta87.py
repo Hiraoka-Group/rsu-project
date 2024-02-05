@@ -1,14 +1,17 @@
+"""
+Visualize the chain of a syn-S-1 with theta=38 and delta=87, 
+which is the Pd4L4 structure in Pd12L8 cage measured by X-ray 
+crystallography.
+"""
+
 import matplotlib.pyplot as plt
-import numpy as np
 
 from chainvisualizer.chain import calc_carbon_positions, calc_metal_positions
 from chainvisualizer.utils import limit_axis, transpose_to_xyz
-from rsuanalyzer.chain import calc_chain_end
-from rsuanalyzer.conf_id import conf_id_to_lig_and_con_types
 
-CONF_ID = "RRFFRLBFLL"
-THETA = 30
-DELTA = 90
+CONF_ID = "RRFFLLBBRRFFLLBB"  # syn-S-1
+THETA = 38  # by X-ray crystallography
+DELTA = 87
 
 metal_positions = calc_metal_positions(CONF_ID, THETA, DELTA)
 frags_of_ligs = calc_carbon_positions(CONF_ID, THETA, DELTA)
@@ -33,5 +36,6 @@ ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
 limit_axis(ax, 3)
+ax.view_init(20, -160, 0)  # (elevation, azimuth, rotate by z-axis)
 
 plt.show()
