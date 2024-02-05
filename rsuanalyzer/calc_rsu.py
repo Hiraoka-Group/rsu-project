@@ -23,7 +23,6 @@ def calc_rsu(
       it would be "RR(FF)RL(FF)". Note that for a chain, the 
       conformation ID would contain n-1 connection types for a chain of 
       n ligands (e.g. "RR(FF)RL").
-      With and without brackets are both acceptable.
     - theta (float): Tilting angles in ligands in degrees.
     - delta_ (float): N-Pd-N angles in degrees.
 
@@ -31,7 +30,6 @@ def calc_rsu(
     - float: The calculated RSU. This is the average chain end distance 
       divided by the chain length.
     """
-    conf_id_of_ring = conf_id_of_ring.replace("(", "").replace(")", "")
     chain_length = len(conf_id_of_ring) // 4
     conf_ids = ring_to_chains(conf_id_of_ring)
 
@@ -51,19 +49,23 @@ def ring_to_chains(conf_id_of_ring: str) -> list[str]:
     - conf_id_of_ring (str): The conformation ID of the ring. 
       This should contain the same number of connection types as the 
       number of ligands in the ring. For example, for a 2-membered ring, 
-      it would be "RR(FF)RL(FF)". With and without brackets are both
-      acceptable.
+      it would be "RR(FF)RL(FF)".
 
     Returns:
     - list[str]: The conformation IDs of the chains.
 
     Examples:
-    >>> ring_to_chains("RR(FF)RL(FF)")
+    >>> ring_to_chains("RRFFRLFF")
     ['RRFFRL', 'RLFFRR']
-    >>> ring_to_chains("RR(FF)RL(FF)RR(BF)")
+    >>> ring_to_chains("RRFFRLFFRRBF")
     ['RRFFRLFFRR', 'RRBFRRFFRL', 'RLFFRRBFRR']
     """
-    conf_id_of_ring = conf_id_of_ring.replace("(", "").replace(")", "")
+    # Validate the input.
+    if len(conf_id_of_ring) % 4 != 0:
+        raise ValueError(
+            "The length of the conformation ID of the ring should be a "
+            "multiple of 4.")
+    
     chain_length = len(conf_id_of_ring) // 4
     chains = []
     for _ in range(chain_length):
