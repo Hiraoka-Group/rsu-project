@@ -36,6 +36,6 @@ def calc_carbon_positions_of_fragments_of_lig(
         third_hex.append(vtx_in_coord_a)
     
     edge_ab = [np.array([PD_N_DIST + 2 * RADIUS, 0, 0]), x_ab_in_coord_a - np.array([RADIUS, 0, 0])]
-    edge_bc = [second_hex[1], third_hex[3]]
+    edge_bc = [second_hex[1 if lig_type in ("RR", "RL") else 5], third_hex[3]]
 
     return [first_hex, second_hex, third_hex, edge_ab, edge_bc]
