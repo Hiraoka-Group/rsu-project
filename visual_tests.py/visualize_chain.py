@@ -3,31 +3,56 @@ import numpy as np
 
 from chainvisualizer.chain import calc_carbon_positions, calc_metal_positions
 from rsuanalyzer.chain import calc_chain_end
+from rsuanalyzer.conf_id import conf_id_to_lig_and_con_types
 
 
 def visualize_chain(conf_id: str, theta: float, delta_: float):
-    x_a0 = [0, 0, 0]
-    x_c2n, _ = calc_chain_end(conf_id, theta, delta_)
+    ORIGIN = [0, 0, 0]
+    lig_types, con_types = conf_id_to_lig_and_con_types(conf_id)
 
-    metal_atom_positions = calc_metal_positions(conf_id, theta, delta_)
-    carbon_pos_of_frags_of_all_ligs = calc_carbon_positions(conf_id, theta, delta_)
+    x_of_chain_end, _ = calc_chain_end(conf_id, theta, delta_)
+    dist = np.linalg.norm(x_of_chain_end)
+
+    metal_positions = calc_metal_positions(conf_id, theta, delta_)
+    frags_of_ligs = calc_carbon_positions(conf_id, theta, delta_)
 
     fig = plt.figure(figsize=(6, 6))
     ax = fig.add_subplot(111, projection='3d')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
     
-    ax.plot([x_a0[0], x_c2n[0]], [x_a0[1], x_c2n[1]], [x_a0[2], x_c2n[2]], 'r')
+    # Draw the line from the origin to the chain end.
+    ax.plot(
+        *([ORIGIN[i], x_of_chain_end[i]] for i in range(3)),
+        c='#666', linestyle='dashed', linewidth=0.5, marker='o', 
+        markersize=3)
     
-    colors = ['b', 'g', 'y', 'm', 'c']
+    mid_point = [(ORIGIN[i] + x_of_chain_end[i]) / 2 for i in range(3)]
+    ax.text(
+        *mid_point, f"dist: {dist:.2f}", color='#444', ha='center', 
+        va='center')
     
-    for i, metal_atom_position in enumerate(metal_atom_positions):
-        ax.text(metal_atom_position[0], metal_atom_position[1], metal_atom_position[2], i+1, color='orange')
+    colors = ['#1f77b4', '#2ca02c', '#ff7f0e', '#9467bd', '#17becf']
+    
+    for i, metal_atom_position in enumerate(metal_positions):
+        offset = 0.1
+        ax.text(metal_atom_position[0] + offset, metal_atom_position[1] + offset, metal_atom_position[2] + offset, i+1, color='orange')
         ax.scatter(metal_atom_position[0], metal_atom_position[1], metal_atom_position[2], c='orange', marker='o')
     
-    for i, carbon_pos_of_frags in enumerate(carbon_pos_of_frags_of_all_ligs):
-        for carbon_pos_list in carbon_pos_of_frags:
-            carbon_pos_array = np.array(carbon_pos_list)
-            ax.plot(carbon_pos_array[:, 0], carbon_pos_array[:, 1], carbon_pos_array[:, 2], c=colors[i % len(colors)])
-                
+    for i, (frags, lig_type) in enumerate(zip(frags_of_ligs, lig_types)):
+        for j, carbon_positions in enumerate(frags):
+            carbon_pos_array = np.array(carbon_positions)
+
+            color = colors[i % len(colors)]
+            ax.plot(carbon_pos_array[:, 0], carbon_pos_array[:, 1], carbon_pos_array[:, 2], c=color)
+            
+            if j == 3:
+                text_pos = [(carbon_pos_array[0, k] + carbon_pos_array[-1, k]) / 2 for k in range(3)]
+                ax.text(*text_pos, lig_type[0], color=color, ha='center', va='center')
+            elif j == 4:
+                text_pos = [(carbon_pos_array[0, k] + carbon_pos_array[-1, k]) / 2 for k in range(3)]
+                ax.text(*text_pos, lig_type[1], color=color, ha='center', va='center')
     
     # Set the aspect ratio of the plot axes
     ax.set_box_aspect([1, 1, 1])
@@ -45,4 +70,4 @@ def visualize_chain(conf_id: str, theta: float, delta_: float):
 
 
 if __name__ == "__main__":
-    visualize_chain("RRFFRL", 30, 90)
+    visualize_chain("RRFFRLBFLL", 30, 90)
