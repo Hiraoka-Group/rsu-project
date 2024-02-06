@@ -1,8 +1,8 @@
 
 import numpy as np
 
-from rsuanalyzer.chain import calc_con_rot, calc_lig_ends_of_chain
-from rsuanalyzer.conf_id import conf_id_to_lig_and_con_types
+from rsuanalyzer.core.chain import calc_con_rot, calc_lig_ends_of_chain
+from rsuanalyzer.core.conf_id import conf_id_to_lig_and_con_types
 
 from .lig import calc_carbon_positions_of_fragments_of_lig
 

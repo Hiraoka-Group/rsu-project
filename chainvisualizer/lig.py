@@ -2,7 +2,7 @@ from math import cos, pi, sin
 
 import numpy as np
 
-from rsuanalyzer.lig import calc_inner_vecs_and_rots
+from rsuanalyzer.core.lig import calc_inner_vecs_and_rots
 
 
 def calc_carbon_positions_of_fragments_of_lig(

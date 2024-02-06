@@ -7,7 +7,7 @@ import os
 
 import pandas as pd
 
-from rsuanalyzer.rsu import calc_rsu
+from rsuanalyzer.core.rsu import calc_rsu
 
 CONF_ID_OF_RING = "RL(FF)RL(FF)RL(FF)"
 THETAS = range(0, 91, 1)
