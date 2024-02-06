@@ -1,3 +1,5 @@
+![Header Image](./images/header.png)
+
 # RSU Analyzer
 
 RSU Analyzer is a Python project intended for chemical research, particularly focusing on analyzing RSU (Ring Strain per Unit). RSU serves as an indicator for estimating purely geometric strains in rings present in assemblies such as Pd6L4, Pd9L6, and Pd12L8. For more details, please consult the associated research paper.
