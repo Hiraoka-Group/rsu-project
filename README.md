@@ -39,8 +39,5 @@ It's important to execute each module from the project's root directory. Running
 ### Case 2: Applying the Analysis to Your Original Assemblies
 You can utilize the analysis by employing the `rsuanalyzer` and `chainvisualizer` packages. Please refer to the scripts in the `analysis` directory.
 
-## Usage
-[Add usage instructions here, including command-line tool usage or library interface.]
-
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
