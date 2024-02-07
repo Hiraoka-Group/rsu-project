@@ -4,8 +4,8 @@ import numpy as np
 import pytest
 from scipy.spatial.transform import Rotation as R
 
-from rsuanalyzer.core.lig import (calc_lig_end, calc_vecs_rots_in_lig,
-                                  lig_type_to_signs)
+from rsuanalyzer.core.lig import (rot_ab1, rot_ac, x_ab_coord_a, x_ac_coord_a,
+                                  x_bc_coord_a)
 
 
 def cos_deg(deg):
@@ -16,191 +16,47 @@ def sin_deg(deg):
 
 
 @pytest.mark.parametrize(
-    "lig_type, expected_signs", 
+    "lig_type, theta, expected_rot_ab1",
     [
-        ("RR", (1, 1)),
-        ("RL", (1, -1)),
-        ("LR", (-1, 1)),
-        ("LL", (-1, -1))
+        ("RR", 30, R.from_euler("x", 30, degrees=True)),
+        ("RL", 30, R.from_euler("x", 30, degrees=True)),
+        ("LR", 30, R.from_euler("x", -30, degrees=True)),
+        ("LL", 30, R.from_euler("x", -30, degrees=True))
     ]
 )
-def test_lig_type_to_signs(lig_type, expected_signs):
-    assert lig_type_to_signs(lig_type) == expected_signs
+def test_rot_ab1(lig_type, theta, expected_rot_ab1: R):
+    assert np.allclose(rot_ab1(lig_type, theta).as_matrix(), expected_rot_ab1.as_matrix())
 
 
-# =============================================================
-# Test calc_vecs_rots_in_lig
-# =============================================================
-# lig_type = "RR", "RL", "LR" or "LL"
-# theta = 0, 30, 90
-#
-# -> The following cases are tested:
-# case 1: (lig_type, theta) = ("RR", 0)
-# case 2: (lig_type, theta) = ("RR", 30)
-# case 3: (lig_type, theta) = ("RR", 90)
-# case 4: (lig_type, theta) = ("RL", 30)
-# case 5: (lig_type, theta) = ("LR", 30)
-# case 6: (lig_type, theta) = ("LL", 30)
+@pytest.mark.parametrize(
+    "lig_type, theta, expected_rot_ac",
+    [
+        ("RR", 30, R.from_euler("XZX", [30, 60, 30 + 180], degrees=True)),
+        ("RL", 30, R.from_euler("XZX", [30, 60, -30], degrees=True)),
+        ("LR", 30, R.from_euler("XZX", [-30, -60, 30], degrees=True)),
+        ("LL", 30, R.from_euler("XZX", [-30, -60, -30 + 180], degrees=True))
+    ]
+)
+def test_rot_ac(lig_type, theta, expected_rot_ac: R):
+    assert np.allclose(rot_ac(lig_type, theta).as_matrix(), expected_rot_ac.as_matrix())
 
 
-@pytest.mark.calc_vecs_rots_in_lig
-def test_calc_vecs_rots_in_lig_RR_theta_0():
-    (
-        x_ab_in_coord_a, x_bc_in_coord_a, 
-        rot_ab1, rot_b1b2, rot_b2c1, rot_c1c2
-        ) = calc_vecs_rots_in_lig("RR", 0)
-
-    assert np.allclose(x_ab_in_coord_a, np.array([1, 0, 0]))
-    assert np.allclose(
-        x_bc_in_coord_a, 
-        R.from_euler("z", 60, degrees=True).apply([1, 0, 0]))
-    assert np.allclose(
-        rot_ab1.as_matrix(), 
-        R.from_euler("x", 0, degrees=True).as_matrix())
-    assert np.allclose(
-        rot_b1b2.as_matrix(), 
-        R.from_euler("z", 60, degrees=True).as_matrix())
-    assert np.allclose(
-        rot_b2c1.as_matrix(), 
-        R.from_euler("x", 0, degrees=True).as_matrix())
-    assert np.allclose(
-        rot_c1c2.as_matrix(), 
-        R.from_euler("x", 180, degrees=True).as_matrix())
+def test_x_ab_coord_a():
+    assert np.allclose(x_ab_coord_a("RR", 30), np.array([1, 0, 0]))
 
 
-@pytest.mark.calc_vecs_rots_in_lig
-def test_calc_vecs_rots_in_lig_RR_theta_90():
-    (
-        x_ab_in_coord_a, x_bc_in_coord_a, 
-        rot_ab1, rot_b1b2, rot_b2c1, rot_c1c2
-        ) = calc_vecs_rots_in_lig("RR", 90)
-
-    assert np.allclose(x_ab_in_coord_a, np.array([1, 0, 0]))
-    assert np.allclose(
-        x_bc_in_coord_a, 
-        R.from_euler("y", -60, degrees=True).apply([1, 0, 0]))
-    assert np.allclose(
-        rot_ab1.as_matrix(), 
-        R.from_euler("x", 90, degrees=True).as_matrix())
-    assert np.allclose(
-        rot_b1b2.as_matrix(), 
-        R.from_euler("z", 60, degrees=True).as_matrix())
-    assert np.allclose(
-        rot_b2c1.as_matrix(), 
-        R.from_euler("x", 90, degrees=True).as_matrix())
-    assert np.allclose(
-        rot_c1c2.as_matrix(), 
-        R.from_euler("x", 180, degrees=True).as_matrix())
+@pytest.mark.parametrize(
+    "lig_type, theta, expected_x_bc_coord_a",
+    [
+        ("RR", 30, R.from_euler("XZ", [30, 60], degrees=True).apply([1, 0, 0])),
+        ("RL", 30, R.from_euler("XZ", [30, 60], degrees=True).apply([1, 0, 0])),
+        ("LR", 30, R.from_euler("XZ", [-30, -60], degrees=True).apply([1, 0, 0])),
+        ("LL", 30, R.from_euler("XZ", [-30, -60], degrees=True).apply([1, 0, 0]))
+    ]
+)
+def test_x_bc_coord_a(lig_type, theta, expected_x_bc_coord_a):
+    assert np.allclose(x_bc_coord_a(lig_type, theta), expected_x_bc_coord_a)
 
 
-@pytest.mark.calc_vecs_rots_in_lig
-def test_calc_vecs_rots_in_lig_RR_theta_30():
-    (
-        x_ab_in_coord_a, x_bc_in_coord_a, 
-        rot_ab1, rot_b1b2, rot_b2c1, rot_c1c2
-        ) = calc_vecs_rots_in_lig("RR", 30)
-
-    assert np.allclose(x_ab_in_coord_a, np.array([1, 0, 0]))
-    assert np.allclose(
-        x_bc_in_coord_a, 
-        R.from_euler("zx", [60, 30], degrees=True).apply([1, 0, 0]))
-    assert np.allclose(
-        rot_ab1.as_matrix(), 
-        R.from_euler("x", 30, degrees=True).as_matrix())
-    assert np.allclose(
-        rot_b1b2.as_matrix(), 
-        R.from_euler("z", 60, degrees=True).as_matrix())
-    assert np.allclose(
-        rot_b2c1.as_matrix(), 
-        R.from_euler("x", 30, degrees=True).as_matrix())
-    assert np.allclose(
-        rot_c1c2.as_matrix(), 
-        R.from_euler("x", 180, degrees=True).as_matrix())
-
-
-@pytest.mark.calc_vecs_rots_in_lig
-def test_calc_vecs_rots_in_lig_RL_theta_30():
-    (
-        x_ab_in_coord_a, x_bc_in_coord_a, 
-        rot_ab1, rot_b1b2, rot_b2c1, rot_c1c2
-        ) = calc_vecs_rots_in_lig("RL", 30)
-
-    assert np.allclose(x_ab_in_coord_a, np.array([1, 0, 0]))
-    assert np.allclose(
-        x_bc_in_coord_a, 
-        R.from_euler("zx", [60, 30], degrees=True).apply([1, 0, 0]))
-    assert np.allclose(
-        rot_ab1.as_matrix(), 
-        R.from_euler("x", 30, degrees=True).as_matrix())
-    assert np.allclose(
-        rot_b1b2.as_matrix(), 
-        R.from_euler("z", 60, degrees=True).as_matrix())
-    assert np.allclose(
-        rot_b2c1.as_matrix(), 
-        R.from_euler("x", -30, degrees=True).as_matrix())
-    assert np.allclose(
-        rot_c1c2.as_matrix(), 
-        R.from_euler("x", 0, degrees=True).as_matrix())
-
-
-@pytest.mark.calc_vecs_rots_in_lig
-def test_calc_vecs_rots_in_lig_LR_theta_30():
-    (
-        x_ab_in_coord_a, x_bc_in_coord_a, 
-        rot_ab1, rot_b1b2, rot_b2c1, rot_c1c2
-        ) = calc_vecs_rots_in_lig("LR", 30)
-
-    assert np.allclose(x_ab_in_coord_a, np.array([1, 0, 0]))
-    assert np.allclose(
-        x_bc_in_coord_a, 
-        R.from_euler("zx", [-60, -30], degrees=True).apply([1, 0, 0]))
-    assert np.allclose(
-        rot_ab1.as_matrix(), 
-        R.from_euler("x", -30, degrees=True).as_matrix())
-    assert np.allclose(
-        rot_b1b2.as_matrix(), 
-        R.from_euler("z", -60, degrees=True).as_matrix())
-    assert np.allclose(
-        rot_b2c1.as_matrix(), 
-        R.from_euler("x", 30, degrees=True).as_matrix())
-    assert np.allclose(
-        rot_c1c2.as_matrix(), 
-        R.from_euler("x", 0, degrees=True).as_matrix())
-
-
-@pytest.mark.calc_vecs_rots_in_lig
-def test_calc_vecs_rots_in_lig_LL_theta_30():
-    (
-        x_ab_in_coord_a, x_bc_in_coord_a, 
-        rot_ab1, rot_b1b2, rot_b2c1, rot_c1c2
-        ) = calc_vecs_rots_in_lig("LL", 30)
-
-    assert np.allclose(x_ab_in_coord_a, np.array([1, 0, 0]))
-    assert np.allclose(
-        x_bc_in_coord_a, 
-        R.from_euler("zx", [-60, -30], degrees=True).apply([1, 0, 0]))
-    assert np.allclose(
-        rot_ab1.as_matrix(), 
-        R.from_euler("x", -30, degrees=True).as_matrix())
-    assert np.allclose(
-        rot_b1b2.as_matrix(), 
-        R.from_euler("z", -60, degrees=True).as_matrix())
-    assert np.allclose(
-        rot_b2c1.as_matrix(), 
-        R.from_euler("x", -30, degrees=True).as_matrix())
-    assert np.allclose(
-        rot_c1c2.as_matrix(), 
-        R.from_euler("x", 180, degrees=True).as_matrix())
-
-
-@pytest.mark.calc_lig_end
-def test_calc_lig_end_RR_theta_0():
-    x, rot = calc_lig_end("RR", 0)
-
-    assert np.allclose(
-        x, 
-        np.array([1, 0, 0]) \
-        + R.from_euler("z", 60, degrees=True).apply([1, 0, 0]))
-    assert np.allclose(
-        rot.as_matrix(), 
-        R.from_euler("ZX", [60, 180], degrees=True).as_matrix())
+def test_x_ac_coord_a():
+    assert np.allclose(x_ac_coord_a("RR", 30), x_ab_coord_a("RR", 30) + x_bc_coord_a("RR", 30))
