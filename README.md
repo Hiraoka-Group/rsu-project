@@ -27,7 +27,7 @@ cd rsuanalyzer
 
 3. Install the required packages:
 ```bash
-pip install -r requirements.txt
+poetry install
 ```
 
 
