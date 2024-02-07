@@ -4,7 +4,7 @@
 
 RSU Analyzer is a Python project developed by Hiraoka Laboratory at The University of Tokyo for the scientific paper titled: **Rational design of metal-organic cages to increase the number of components via dihedral angle control** by T. Abe, K. Takeuchi, and <INS>S. Hiraoka</INS>.
 
-This project focuses on analyzing RSU (Ring Strain per Unit), which acts as an indicator for estimating purely geometric strains in rings comprised of the ditopic ligand 1,3-di(4-pyridyl)benzene. These rings serve as models for subcomponent rings in Pd6L4, Pd9L6, and Pd12L8 assemblies, where L represents tritopic ligands.
+This project focuses on analyzing RSU (Ring Strain per Unit), which acts as an indicator for estimating purely geometric strains in rings comprised of the ditopic ligand 1,3-di(4-pyridyl)benzene. These rings serve as models for subcomponent rings in Pd6L4, Pd9L6, and Pd12L8 assemblies, where L represents tritopic ligands. For more detailed information, please refer to the associated research paper.
 
 Key components of this project include:
 - Scripts for reproducing and analyzing the results presented in the paper, along with the generated results (located in the `analysis` directory). These scripts utilize functionalities provided by the `rsuanalyzer` and `chainvisualizer` packages below.
