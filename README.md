@@ -42,4 +42,4 @@ It's important to execute each module from the project's root directory. Running
 You can utilize the analysis by employing the `rsuanalyzer` and `chainvisualizer` packages. Please refer to the scripts in the `analysis` directory.
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the CC BY-NC 4.0 License, following the same terms as the associated paper. See the LICENSE file for details.
