@@ -31,14 +31,22 @@ pip install -r requirements.txt
 ```
 
 
-## Main Usage: Reproducing Results from the Paper
-Scripts for reproducing the results from the paper are located in the analysis directory.
+## Usage
+To reproduce the results presented in the paper, run the scripts located in the `analysis` directory.
 
-To execute each module within the analysis directory, use the following command:
+To execute each module within the `analysis` directory, use the following command structure:
 ```bash
-python3 -m analysis.chain_visualization.src.syns1_theta38
+python3 -m [path_from_the_project_root_directory]
 ```
-It's crucial to execute each module from the project's root directory. Running modules directly from their respective directories (such as the `src` directory in this case) may result in import errors.
+
+Replace `[path_from_the_project_root_directory]` with the actual path to the module (without the `.py` extension).
+
+For example, to run the `syns1_theta38.py` script located in the `analysis/chain_visualization/src` directory, use the following command:
+```bash
+python3 -m analysis.chain_visualization.syns1_theta38
+```
+
+Ensuring that you execute each module from the project's root directory is essential. Attempting to run modules directly from their respective directories (like the `src` directory in this scenario) could lead to import errors. Therefore, confirm that your current directory, which you can verify using the `pwd` command, is indeed the root directory of the project, namely, `rsuanalyzer`.
 
 
 ## License
