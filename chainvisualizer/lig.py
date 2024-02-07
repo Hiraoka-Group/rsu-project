@@ -2,13 +2,13 @@ from math import cos, pi, sin
 
 import numpy as np
 
-from rsuanalyzer.core.lig import calc_inner_vecs_and_rots
+from rsuanalyzer.core.lig import calc_vecs_rots_in_lig
 
 
 def calc_carbon_positions_of_fragments_of_lig(
         lig_type: str, theta: float) -> list[list[np.ndarray]]:
     (x_ab_in_coord_a, x_bc_in_coord_a, rot_ab1, rot_b1b2, rot_b2c1, 
-        rot_c1c2) = calc_inner_vecs_and_rots(lig_type, theta)
+        rot_c1c2) = calc_vecs_rots_in_lig(lig_type, theta)
     
     PD_N_DIST = .16
     RADIUS = .2
