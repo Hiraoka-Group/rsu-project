@@ -2,40 +2,34 @@ from math import cos, pi, sin
 
 import numpy as np
 
-from rsuanalyzer.core.lig import calc_vecs_rots_in_lig
+from rsuanalyzer.core.lig import rot_ab1, rot_ac, x_ab_coord_a, x_bc_coord_a
 
 
-def calc_carbon_positions_of_fragments_of_lig(
-        lig_type: str, theta: float) -> list[list[np.ndarray]]:
-    (x_ab_in_coord_a, x_bc_in_coord_a, rot_ab1, rot_b1b2, rot_b2c1, 
-        rot_c1c2) = calc_vecs_rots_in_lig(lig_type, theta)
+def calc_c_positions_of_frags_in_lig(
+        lig_type: str, theta: float, hex_radius: float = .2,
+        pd_n_dist: float = .16
+        ) -> list[list[np.ndarray]]:
     
-    PD_N_DIST = .16
-    RADIUS = .2
-    HEXAGON = [
-        RADIUS * np.array([cos(2 * pi * i / 6), sin(2 * pi * i / 6), 0])
-        for i in range(7)
-        ]
+    hex = []
+    for i in range(7):
+        phi = i * pi / 3
+        hex.append(hex_radius * np.array([cos(phi), sin(phi), 0]))
 
-    vec_of_pd_to_cent_of_first_hex = (PD_N_DIST + RADIUS) * np.array([1, 0, 0])
     first_hex = [
-        vec_of_pd_to_cent_of_first_hex + vtx for vtx in HEXAGON]
+        np.array([(pd_n_dist + hex_radius), 0, 0]) + vtx for vtx in hex]
     
-    second_hex = []
-    for vtx in HEXAGON:
-        vtx_in_coord_b1 = vtx
-        vtx_in_coord_a = x_ab_in_coord_a + rot_ab1.apply(vtx_in_coord_b1)
-        second_hex.append(vtx_in_coord_a)
-
-    pd_to_third_hex_in_coord_c1 = (PD_N_DIST + RADIUS) * np.array([-1, 0, 0])
-    third_hex = []
-    rot_ac1 = rot_ab1 * rot_b1b2 * rot_b2c1
-    for vtx in HEXAGON:
-        vtx_in_coord_c1 = vtx + pd_to_third_hex_in_coord_c1
-        vtx_in_coord_a = x_ab_in_coord_a + x_bc_in_coord_a + rot_ac1.apply(vtx_in_coord_c1)
-        third_hex.append(vtx_in_coord_a)
+    second_hex = [
+        rot_ab1(lig_type, theta).apply(vtx)
+        + x_ab_coord_a(lig_type, theta) for vtx in hex]
     
-    edge_ab = [np.array([PD_N_DIST + 2 * RADIUS, 0, 0]), x_ab_in_coord_a - np.array([RADIUS, 0, 0])]
+    third_hex = [
+        rot_ac(lig_type, theta).apply(vtx) 
+        + x_ab_coord_a(lig_type, theta) 
+        + x_bc_coord_a(lig_type, theta) * (1 - pd_n_dist - hex_radius)
+        for vtx in hex
+        ]
+    
+    edge_ab = [first_hex[0], second_hex[3]]
     edge_bc = [second_hex[1 if lig_type in ("RR", "RL") else 5], third_hex[3]]
 
     return [first_hex, second_hex, third_hex, edge_ab, edge_bc]
