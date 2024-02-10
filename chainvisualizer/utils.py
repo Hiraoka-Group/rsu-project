@@ -12,10 +12,10 @@ def limit_axis(ax, min_width):
     y_min, y_max = ax.get_ylim()
     z_min, z_max = ax.get_zlim()
     current_width = max(x_max - x_min, y_max - y_min, z_max - z_min)
-    if current_width < min_width:
-        x_center = (x_min + x_max) / 2
-        y_center = (y_min + y_max) / 2
-        z_center = (z_min + z_max) / 2
-        ax.set_xlim(x_center - min_width / 2, x_center + min_width / 2)
-        ax.set_ylim(y_center - min_width / 2, y_center + min_width / 2)
-        ax.set_zlim(z_center - min_width / 2, z_center + min_width / 2)
+    min_width = max(min_width, current_width)
+    x_center = (x_min + x_max) / 2
+    y_center = (y_min + y_max) / 2
+    z_center = (z_min + z_max) / 2
+    ax.set_xlim(x_center - min_width / 2, x_center + min_width / 2)
+    ax.set_ylim(y_center - min_width / 2, y_center + min_width / 2)
+    ax.set_zlim(z_center - min_width / 2, z_center + min_width / 2)
