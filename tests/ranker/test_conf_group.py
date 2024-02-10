@@ -1,32 +1,132 @@
+import numpy as np
+import pytest
+
 from rsuanalyzer.core.rsu import calc_rsu
-from rsuanalyzer.ranker.conf_group import conf_id_to_ids_in_same_group
+from rsuanalyzer.ranker.conf_group import (different_cut_points, enantiomer,
+                                           id_to_dup_ids, lig_con_set_revs,
+                                           order_reversed)
 
 
-def test_conf_id_to_ids_in_same_group_case1():
-    conf_id = "RRFFLLBB"
-    EXPECTED = {"RRFFLLBB", "LLBBRRFF", "LLFFRRBB", "RRBBLLFF"}
-    assert conf_id_to_ids_in_same_group(conf_id) == EXPECTED
-
-    # RSU should be the same for all the conformation IDs
-    # in the same group.
-    THETA = 30
-    DELTA = 87
-    rsu = calc_rsu(conf_id, THETA, DELTA)
-    for conf_id2 in EXPECTED:
-        assert rsu == calc_rsu(conf_id2, THETA, DELTA)
+@pytest.mark.parametrize(
+    "conf_id, expected",
+    [
+        ("RRFFLLBB", ["RRFFLLBB", "LLBBRRFF"]),
+        ("RRFFLLBBRLFB", ["RRFFLLBBRLFB", "LLBBRLFBRRFF", "RLFBRRFFLLBB"])
+    ]
+)
+def test_different_cut_points(conf_id, expected):
+    assert different_cut_points(conf_id) == expected
 
 
-def test_conf_id_to_ids_in_same_group_case2():
-    conf_id = "RLFBRRFF"
-    EXPECTED = {
-        "RLFBRRFF", "RRFFRLFB", "RRBFLRFF", "LRFFRRBF", 
-        "LRFBLLFF", "LLFFLRFB", "LLBFRLFF", "RLFFLLBF"}
-    assert conf_id_to_ids_in_same_group(conf_id) == EXPECTED
+@pytest.mark.parametrize(
+    "conf_id, expected",
+    [
+        ("RRFFLLBB", "LLFFRRBB"),
+        ("RRFFLLBBRLFB", "LRBBLLFFRRBF")
+    ]
+)
+def test_order_reversed(conf_id, expected):
+    assert order_reversed(conf_id) == expected
 
-    # RSU should be the same for all the conformation IDs 
-    # in the same group.
-    THETA = 30
-    DELTA = 87
-    rsu = calc_rsu(conf_id, THETA, DELTA)
-    for conf_id2 in EXPECTED:
-        assert rsu == calc_rsu(conf_id2, THETA, DELTA)
+
+@pytest.mark.parametrize(
+    "conf_id, expected",
+    [
+        ("RRFFLLBB", "LLFFRRBB"),
+        ("RRFFLLBBRLFB", "LLFFRRBBLRFB")
+    ]
+)
+def test_enantiomer(conf_id, expected):
+    assert enantiomer(conf_id) == expected
+
+
+@pytest.mark.parametrize(
+    "conf_id, expected",
+    [
+        ("RRFF", {"RRFF", "RLBF", "LRFB", "LLBB"}),
+        ("RRFFLLBB", {
+            "RRFFLLBB", "LRFFLLBF", "RRFFLRFB", "LRFFLRFF",
+            "RRFBRLBB", "LRFBRLBF", "RRFBRRFB", "LRFBRRFF",
+            "RLBFLLBB", "LLBFLLBF", "RLBFLRFB", "LLBFLRFF",
+            "RLBBRLBB", "LLBBRLBF", "RLBBRRFB", "LLBBRRFF",
+            })
+    ]
+)
+def test_lig_con_set_revs(conf_id, expected):
+    assert lig_con_set_revs(conf_id) == expected
+
+
+@pytest.mark.parametrize(
+    "conf_id, theta, expected",
+    [
+        ("RRFFLLBB", 30, {
+            "RRFFLLBB", "LLBBRRFF", "LLFFRRBB", "RRBBLLFF"
+        }),
+        ("RRFFLLFB", 30, {
+            "RRFFLLFB", "LLFBRRFF", "LLFFRRBF", "RRBFLLFF",
+            "LLFFRRFB", "RRFBLLFF", "RRFFLLBF", "LLBFRRFF"
+        }),
+        ("RRFFLLFB", 0, {
+            "RRFFLLFB", "LRFFLLFF", "RRFFLRBB", "LRFFLRBF", 
+            "RRFBRLFB", "LRFBRLFF", "RRFBRRBB", "LRFBRRBF", 
+            "RLBFLLFB", "LLBFLLFF", "RLBFLRBB", "LLBFLRBF", 
+            "RLBBRLFB", "LLBBRLFF", "RLBBRRBB", "LLBBRRBF", 
+
+            "LLFBRRFF", "RLFBRRFB", "LLFBRLBF", "RLFBRLBB", 
+            "LLFFLRFF", "RLFFLRFB", "LLFFLLBF", "RLFFLLBB", 
+            "LRBBRRFF", "RRBBRRFB", "LRBBRLBF", "RRBBRLBB", 
+            "LRBFLRFF", "RRBFLRFB", "LRBFLLBF", "RRBFLLBB", 
+
+            "LLFFRRBF", "RLFFRRBB", "LLFFRLFF", "RLFFRLFB", 
+            "LLFBLRBF", "RLFBLRBB", "LLFBLLFF", "RLFBLLFB", 
+            "LRBFRRBF", "RRBFRRBB", "LRBFRLFF", "RRBFRLFB", 
+            "LRBBLRBF", "RRBBLRBB", "LRBBLLFF", "RRBBLLFB", 
+
+            "RRBFLLFF", "LRBFLLFB", "RRBFLRBF", "LRBFLRBB", 
+            "RRBBRLFF", "LRBBRLFB", "RRBBRRBF", "LRBBRRBB", 
+            "RLFFLLFF", "LLFFLLFB", "RLFFLRBF", "LLFFLRBB", 
+            "RLFBRLFF", "LLFBRLFB", "RLFBRRBF", "LLFBRRBB", 
+
+            "LLFFRRFB", "RLFFRRFF", "LLFFRLBB", "RLFFRLBF", 
+            "LLFBLRFB", "RLFBLRFF", "LLFBLLBB", "RLFBLLBF", 
+            "LRBFRRFB", "RRBFRRFF", "LRBFRLBB", "RRBFRLBF", 
+            "LRBBLRFB", "RRBBLRFF", "LRBBLLBB", "RRBBLLBF", 
+
+            "RRFBLLFF", "LRFBLLFB", "RRFBLRBF", "LRFBLRBB", 
+            "RRFFRLFF", "LRFFRLFB", "RRFFRRBF", "LRFFRRBB", 
+            "RLBBLLFF", "LLBBLLFB", "RLBBLRBF", "LLBBLRBB", 
+            "RLBFRLFF", "LLBFRLFB", "RLBFRRBF", "LLBFRRBB", 
+
+            "RRFFLLBF", "LRFFLLBB", "RRFFLRFF", "LRFFLRFB", 
+            "RRFBRLBF", "LRFBRLBB", "RRFBRRFF", "LRFBRRFB", 
+            "RLBFLLBF", "LLBFLLBB", "RLBFLRFF", "LLBFLRFB", 
+            "RLBBRLBF", "LLBBRLBB", "RLBBRRFF", "LLBBRRFB", 
+
+            "LLBFRRFF", "RLBFRRFB", "LLBFRLBF", "RLBFRLBB", 
+            "LLBBLRFF", "RLBBLRFB", "LLBBLLBF", "RLBBLLBB", 
+            "LRFFRRFF", "RRFFRRFB", "LRFFRLBF", "RRFFRLBB", 
+            "LRFBLRFF", "RRFBLRFB", "LRFBLLBF", "RRFBLLBB", 
+        }),
+    ]
+)
+def test_id_to_ids_in_same_group(conf_id, theta, expected):
+    assert id_to_dup_ids(conf_id, theta) == expected
+
+
+
+@pytest.mark.parametrize(
+    "conf_id, theta",
+    [
+        ("RRFFLLFB", 30),
+        ("RRFFLLFB", 0),
+        ("RRFFLLFB", 90),
+        ("RRFFLLFBRRBB", 30),
+        ("RRFFLLFBRRBB", 0),
+        ("RRFFLLFBRRBB", 90),
+    ]
+)
+def test_ids_from_same_group_have_same_rsu(conf_id, theta):
+    rsu = calc_rsu(conf_id, theta, 87)
+    for conf_id2 in id_to_dup_ids(conf_id, theta):
+        rsu2 = calc_rsu(conf_id2, theta, 87)
+        assert np.isclose(rsu, rsu2), f"RSU of {conf_id} and {conf_id2} are not the same. {rsu} != {rsu2} (theta={theta})"
