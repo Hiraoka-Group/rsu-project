@@ -4,7 +4,7 @@ def conf_id_to_lig_and_con_types(
     Convert the conformation ID to the ligand types and connection types.
 
     Args:
-    - conf_id (str): Conformation ID of the chain.
+    - conf_id (str): Conformation ID of the chain or ring.
     
     Returns:
     - tuple[list[str], list[str]]: Ligand types and connection types.
