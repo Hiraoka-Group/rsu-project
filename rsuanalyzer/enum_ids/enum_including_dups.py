@@ -1,7 +1,7 @@
 from itertools import product
 
 
-def enum_conf_ids_including_dups(num_of_ligs: int) -> list[str]:
+def enum_conf_ids_including_dups(num_of_ligs: int) -> set[str]:
     """
     Enumerate all possible conformation IDs of rings.
 
@@ -12,7 +12,7 @@ def enum_conf_ids_including_dups(num_of_ligs: int) -> list[str]:
     - num_of_ligs (int): The number of ligands in a ring.
 
     Returns:
-    - list[str]: The list of conformation IDs of rings.
+    - set[str]: The set of conformation IDs of rings.
 
     Examples:
     >>> enum_conf_ids_including_dups(1)
@@ -31,6 +31,6 @@ def enum_conf_ids_including_dups(num_of_ligs: int) -> list[str]:
 
     # All combinations of lig_con_types for the given number 
     # of ligands.
-    return [
+    return {
         "".join(con_lig_type) for con_lig_type
-        in product(LIG_CON_TYPES, repeat=num_of_ligs)]
+        in product(LIG_CON_TYPES, repeat=num_of_ligs)}
