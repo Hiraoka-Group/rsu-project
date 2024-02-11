@@ -2,17 +2,17 @@ import numpy as np
 import pytest
 
 from rsuanalyzer.calc_rsu.rsu import calc_rsu
-from rsuanalyzer.enum_ids.exclude_dups import (_different_cut_points,
+from rsuanalyzer.enum_ids.exclude_dups import (_all_possible_rl_revs,
+                                               _different_cut_points,
                                                _enantiomer, _id_to_dup_ids,
-                                               _lig_con_set_revs,
-                                               _order_reversed)
+                                               _lig_con_set_revs, _rev_order)
 
 
 @pytest.mark.parametrize(
     "conf_id, expected",
     [
-        ("RRFFLLBB", ["RRFFLLBB", "LLBBRRFF"]),
-        ("RRFFLLBBRLFB", ["RRFFLLBBRLFB", "LLBBRLFBRRFF", "RLFBRRFFLLBB"])
+        ("RRFFLLBB", {"RRFFLLBB", "LLBBRRFF"}),
+        ("RRFFLLBBRLFB", {"RRFFLLBBRLFB", "LLBBRLFBRRFF", "RLFBRRFFLLBB"})
     ]
 )
 def test_different_cut_points(conf_id, expected):
@@ -27,7 +27,7 @@ def test_different_cut_points(conf_id, expected):
     ]
 )
 def test_order_reversed(conf_id, expected):
-    assert _order_reversed(conf_id) == expected
+    assert _rev_order(conf_id) == expected
 
 
 @pytest.mark.parametrize(
@@ -113,6 +113,23 @@ def test_lig_con_set_revs(conf_id, expected):
 def test_id_to_ids_in_same_group(conf_id, theta, expected):
     assert _id_to_dup_ids(conf_id, theta) == expected
 
+
+@pytest.mark.parametrize(
+    "conf_id, expected",
+    [
+        ("RRFF", {
+            "RRFF", "RLFF", "LRFF", "LLFF",
+        }),
+        ("RRFFLLBB", {
+            "RRFFRRBB", "RRFFRLBB", "RRFFLRBB", "RRFFLLBB", 
+            "RLFFRRBB", "RLFFRLBB", "RLFFLRBB", "RLFFLLBB", 
+            "LRFFRRBB", "LRFFRLBB", "LRFFLRBB", "LRFFLLBB", 
+            "LLFFRRBB", "LLFFRLBB", "LLFFLRBB", "LLFFLLBB", 
+        }),
+    ]
+)
+def test_all_possible_rl_revs(conf_id, expected):
+    assert _all_possible_rl_revs(conf_id) == expected
 
 
 @pytest.mark.parametrize(
