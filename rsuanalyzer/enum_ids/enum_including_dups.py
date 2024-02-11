@@ -1,3 +1,5 @@
+"""Functions for enumerating conformation IDs of rings including duplicates."""
+
 from itertools import product
 
 

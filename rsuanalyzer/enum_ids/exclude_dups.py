@@ -1,3 +1,5 @@
+"""Functions to exclude duplicates of conformation IDs of rings."""
+
 from itertools import product
 from typing import Iterable
 
