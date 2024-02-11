@@ -1,3 +1,5 @@
+"""Functions to calculate the rotation for connection on metal"""
+
 from typing import Literal
 
 from scipy.spatial.transform import Rotation as R
@@ -6,14 +8,19 @@ from scipy.spatial.transform import Rotation as R
 def rot_ca(
         con_type: Literal["FF", "FB", "BF", "BB"], delta_: float
         ) -> R:
-    """
-    Calculate the rotation from the coordinate system of the previous 
-    ligand to the coordinate system of the next ligand.
-    
+    """Calculate the rotation for connection on metal.
+
+    Rotation from the coordinate system C of the current ligand to the
+    coordinate system A of the next ligand is calculated. For more
+    detailed definitions, see the associated paper.
+
     Args:
-    - con_type (Literal["FF", "FB", "BF", "BB"]): Connection type of 
-    the ligand.
-    - delta_ (float): Angle in degrees. 0 < delta_ <= 180.
+        con_type (Literal["FF", "FB", "BF", "BB"]): Connection type.
+        delta_ (float): N-M-N angle in degrees. 0 < delta_ <= 180.
+
+    Returns:
+        R: The rotation from the coordinate system C of the current
+        ligand to the coordinate system A of the next ligand.
     """
     if not 0 < delta_ <= 180:
         raise ValueError(f"Invalid delta_: {delta_}")
