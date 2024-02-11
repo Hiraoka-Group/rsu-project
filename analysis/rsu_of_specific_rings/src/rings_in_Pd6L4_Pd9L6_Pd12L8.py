@@ -1,7 +1,7 @@
 import os
 from dataclasses import dataclass
 
-from rsuanalyzer.core.rsu import calc_rsu
+from rsuanalyzer.calc_rsu.rsu import calc_rsu
 
 
 @dataclass

@@ -2,7 +2,7 @@ from typing import Iterable
 
 import pandas as pd
 
-from ..core.rsu import calc_rsu
+from ..calc_rsu.rsu import calc_rsu
 
 
 def calc_min_rsu_for_thetas(
@@ -11,7 +11,8 @@ def calc_min_rsu_for_thetas(
     
     min_rsu_list = []
     for theta in thetas:
-        min_rsu_list.append(calc_min_rsu_for_specific_theta(ring_ids, theta, delta_))
+        min_rsu_list.append(
+            _calc_min_rsu_for_specific_theta(ring_ids, theta, delta_))
 
     min_rsu_table = pd.DataFrame({
         "Theta": thetas,
@@ -22,11 +23,12 @@ def calc_min_rsu_for_thetas(
     return min_rsu_table
 
 
-def calc_min_rsu_for_specific_theta(
+def _calc_min_rsu_for_specific_theta(
         ring_ids: Iterable[str], theta: float, delta_: float
         ) -> tuple[str, float]:
     
-    rsu_list = [calc_rsu(ring_id, theta, delta_) for ring_id in ring_ids]
+    rsu_list = [
+        calc_rsu(ring_id, theta, delta_) for ring_id in ring_ids]
     min_rsu = min(rsu_list)
     min_rsu_idx = rsu_list.index(min_rsu)
     min_rsu_ring_id = ring_ids[min_rsu_idx]

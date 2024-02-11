@@ -1,6 +1,6 @@
 import pandas as pd
 
-from ..core.rsu import calc_rsu
+from ..calc_rsu.rsu import calc_rsu
 
 
 def make_rank_table(

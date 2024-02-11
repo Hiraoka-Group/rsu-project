@@ -2,7 +2,8 @@ from math import cos, pi, sin
 
 import numpy as np
 
-from rsuanalyzer.core.lig import rot_ab1, rot_ac, x_ab_coord_a, x_bc_coord_a
+from rsuanalyzer.calc_rsu.ligand import (rot_ab1, rot_ac, x_ab_coord_a,
+                                         x_bc_coord_a)
 
 
 def calc_c_positions_of_frags_in_lig(

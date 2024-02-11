@@ -7,7 +7,8 @@ from scipy.spatial.transform import Rotation as R
 def x_ac_coord_a(
         lig_type: Literal["RR", "RL", "LR", "LL"], theta: float
         ) -> np.ndarray:
-    return x_ab_coord_a(lig_type, theta) + x_bc_coord_a(lig_type, theta)
+    return x_ab_coord_a(lig_type, theta) + x_bc_coord_a(
+        lig_type, theta)
 
 
 def x_ab_coord_a(
@@ -44,12 +45,14 @@ def rot_ac(
         lig_type: Literal["RR", "RL", "LR", "LL"], theta: float
         ) -> R:
     if lig_type == "RR":
-        return R.from_euler("XZX", [theta, 60, theta + 180], degrees=True)
+        return R.from_euler(
+            "XZX", [theta, 60, theta + 180], degrees=True)
     elif lig_type == "RL":
         return R.from_euler("XZX", [theta, 60, -theta], degrees=True)
     elif lig_type == "LR":
         return R.from_euler("XZX", [-theta, -60, theta], degrees=True)
     elif lig_type == "LL":
-        return R.from_euler("XZX", [-theta, -60, -theta + 180], degrees=True)
+        return R.from_euler(
+            "XZX", [-theta, -60, -theta + 180], degrees=True)
     else:
         raise ValueError(f"Invalid lig_type: {lig_type}")

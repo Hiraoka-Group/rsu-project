@@ -1,6 +1,6 @@
 import os
 
-from rsuanalyzer.ranker.min_rsu import calc_min_rsu_for_thetas
+from rsuanalyzer.analyze_rsu.min_rsu import calc_min_rsu_for_thetas
 
 NUM_LIGS = 2
 THETA_STEP = 10

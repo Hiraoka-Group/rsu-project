@@ -1,51 +1,34 @@
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 
-from .conf_id import conf_id_to_lig_and_con_types
+from .conf_id_to_lig_and_con_types import conf_id_to_lig_and_con_types
 from .connection import calc_con_rot
-from .lig import rot_ac, x_ac_coord_a
+from .ligand import rot_ac, x_ac_coord_a
 
 
 def calc_chain_end_dist(
         conf_id: str, theta: float, delta_: float
         ) -> float:
-    x, _ = calc_chain_end(conf_id, theta, delta_)
+    x, _ = calc_lig_ends_in_chain(conf_id, theta, delta_)[-1]
     return np.linalg.norm(x)
 
 
-def calc_chain_end(
-        conf_id: str, theta: float, delta_: float
-        ) -> tuple[np.ndarray, R]:
-    """
-    Calculate the position and rotation of the end of the chain.
-
-    Args:
-    - conf_id (str): Conformation ID of the chain, e.g., "RRFFRL".
-    - theta (float): Tilting angle of the two C-C bonds in the ligand in
-      degrees. 0 <= theta <= 90.
-    - delta_ (float): Angle in degrees. 0 < delta_ <= 180.
-
-    Returns:
-    - tuple[np.ndarray, R]: Position and rotation of the end of the chain.
-    """
-    lig_ends = calc_lig_ends_of_chain(conf_id, theta, delta_)
-    return lig_ends[-1]
-
-
-def calc_lig_ends_of_chain(
+def calc_lig_ends_in_chain(
         conf_id: str, theta: float, delta_: float
         ) -> list[tuple[np.ndarray, R]]:
     """
-    Calculate the positions and rotations of the ends of the ligands in the chain.
+    Calculate the positions and rotations of the ends of the ligands 
+    in the chain.
 
     Args:
     - conf_id (str): Conformation ID of the chain, e.g., "RRFFRL".
-    - theta (float): Tilting angle of the two C-C bonds in the ligand in
-      degrees. 0 <= theta <= 90.
+    - theta (float): Tilting angle of the two C-C bonds in the ligand 
+    in degrees. 0 <= theta <= 90.
     - delta_ (float): Angle in degrees. 0 < delta_ <= 180.
 
     Returns:
-    - list[tuple[np.ndarray, R]]: Positions and rotations of the ends of the ligands.
+    - list[tuple[np.ndarray, R]]: Positions and rotations of the ends 
+    of the ligands.
     """
     lig_ends = []
     lig_types, con_types = conf_id_to_lig_and_con_types(conf_id)
