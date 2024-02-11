@@ -1,31 +1,36 @@
+"""Calculate the "Ring Strain per Unit" (RSU) for a ring."""
+
 from .chain import calc_chain_end_dist
 
 
 def calc_rsu(
         conf_id_of_ring: str, theta: float, delta_: float
         ) -> float:
-    """
-    Calculate the "Ring Strain per Unit" (RSU) for a ring.
+    """Calculate the "Ring Strain per Unit" (RSU) for a ring.
+    
+    RSU is a measure of the strain of a ring. It is calculated as the
+    [average distance]/[number of chains] where the average distance
+    is the average of the distances between the ends of the chains
+    derived from the ring by cutting at different points. For more
+    details, see the associated paper.
 
     Args:
-    - conf_id_of_ring (str): The conformation ID of the ring. 
-      This should contain the same number of connection types as the 
-      number of ligands in the ring. For example, for a 2-membered ring, 
-      it would be "RRFFRLFF". Note that for a chain, the 
-      conformation ID would contain n-1 connection types for a chain of 
-      n ligands (e.g. "RRFFRL").
-    - theta (float): Tilting angles in ligands in degrees.
-    - delta_ (float): N-Pd-N angles in degrees.
-
+        conf_id_of_ring (str): 
+            Conformation ID of the ring. e.g., "RRFFLLBB".
+        theta (float): 
+            Tilting angle of the two C-C bonds in the ligand
+            in degrees. 0 <= theta <= 90.
+        delta_ (float): 
+            Angle in degrees. 0 < delta_ <= 180.
+        
     Returns:
-    - float: The calculated RSU. This is the average chain end distance 
-      divided by the chain length.
+        float: The RSU for the ring.
     """
     # Validate the input.
     if len(conf_id_of_ring) % 4 != 0:
         raise ValueError(
-            "The length of the conformation ID of the ring should be a "
-            "multiple of 4.")
+            "The length of the conformation ID of the ring should " + 
+            "be a multiple of 4.")
     
     chain_length = len(conf_id_of_ring) // 4
     conf_ids = _ring_id_to_chain_ids(conf_id_of_ring)
@@ -38,19 +43,16 @@ def calc_rsu(
 
 
 def _ring_id_to_chain_ids(conf_id_of_ring: str) -> list[str]:
-    """
-    Convert the conformation ID of a ring to the conformation IDs of
-    the chains.
-
+    """Return the list of conformation IDs of chains derived from the
+    ring by cutting at different points.
+    
     Args:
-    - conf_id_of_ring (str): The conformation ID of the ring. 
-      This should contain the same number of connection types as the 
-      number of ligands in the ring. For example, for a 2-membered ring, 
-      it would be "RRFFRLFF".
+        conf_id_of_ring (str): 
+            Conformation ID of the ring. e.g., "RRFFLLBB".
 
     Returns:
-    - list[str]: The conformation IDs of the chains.
-
+        list[str]: The list of conformation IDs of chains.
+    
     Examples:
     >>> ring_to_chains("RRFFRLFF")
     ['RRFFRL', 'RLFFRR']
