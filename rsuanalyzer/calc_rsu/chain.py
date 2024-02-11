@@ -1,3 +1,5 @@
+"""Functions for calculating the distance between the ends of chains."""
+
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 
@@ -10,26 +12,44 @@ from .ligand import rot_ac, x_ac_coord_a
 def calc_chain_end_dist(
         conf_id: str, theta: float, delta_: float
         ) -> float:
+    """Calculate the distance between the two ends of the chain.
+
+    Args:
+        conf_id (str): Conformation ID of the chain, e.g., "RRFFRL".
+        theta (float): Tilting angle of the two C-C bonds in the ligand
+        in degrees. 0 <= theta <= 90.
+        delta_ (float): Angle in degrees. 0 < delta_ <= 180.
+
+    Returns:
+        float: The distance between the two ends of the chain.
+    """
+    # x is the position vector of the end of the last ligand measured
+    # from the global coordinate system.
     x, _ = calc_lig_ends_in_chain(conf_id, theta, delta_)[-1]
+
+    # Since the position of the other end is (0, 0, 0) in the global
+    # coordinate system, the distance between the two ends is the
+    # norm of x.
     return np.linalg.norm(x)
 
 
 def calc_lig_ends_in_chain(
         conf_id: str, theta: float, delta_: float
         ) -> list[tuple[np.ndarray, R]]:
-    """
-    Calculate the positions and rotations of the ends of the ligands 
+    """Calculate the positions and rotations of the ends of the ligands
     in the chain.
 
     Args:
-    - conf_id (str): Conformation ID of the chain, e.g., "RRFFRL".
-    - theta (float): Tilting angle of the two C-C bonds in the ligand 
-    in degrees. 0 <= theta <= 90.
-    - delta_ (float): Angle in degrees. 0 < delta_ <= 180.
+        conf_id (str): Conformation ID of the chain, e.g., "RRFFRL".
+        theta (float): Tilting angle of the two C-C bonds in the ligand
+        in degrees. 0 <= theta <= 90.
+        delta_ (float): Angle in degrees. 0 < delta_ <= 180.
 
     Returns:
-    - list[tuple[np.ndarray, R]]: Positions and rotations of the ends 
-    of the ligands.
+        list[tuple[np.ndarray, R]]: 
+            The list of tuples, each of which contains the position
+            and the rotation of the end of a ligand measured from the
+            global coordinate system.
     """
     lig_ends = []
     lig_types = conf_id_to_lig_types(conf_id)
