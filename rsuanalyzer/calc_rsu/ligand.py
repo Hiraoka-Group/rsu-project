@@ -1,7 +1,10 @@
 """Functions to calculate vectors and rotations for the ligand.
 
 Model ligand has points A, B, and C, and the coordinate systems A, B1, 
-B2, and C. For more detailed definitions, see the associated paper.
+B2, and C; this module provides functions to calculate the vectors 
+between the points and the rotations between the coordinate systems.
+
+For more detailed definitions, see the associated paper.
 """
 
 from typing import Literal
