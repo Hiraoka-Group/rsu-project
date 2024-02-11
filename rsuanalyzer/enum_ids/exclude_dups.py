@@ -1,9 +1,45 @@
 from itertools import product
+from typing import Iterable
 
-from ..core.conf_id import conf_id_to_lig_and_con_types
+from rsuanalyzer.calc_rsu.conf_id_to_lig_and_con_types import \
+    conf_id_to_lig_and_con_types
 
 
-def id_to_dup_ids(conf_id: str, theta: float) -> set[str]:
+def exclude_duplicates(
+        conf_ids: Iterable[str], theta: float) -> set[str]:
+    """
+    Exclude duplicate conformation IDs of rings.
+
+    Args:
+    - conf_ids (Iterable[str]): The list of conformation IDs of rings 
+    including duplicates.
+    - theta (float): Tilting angle of the ligand in degree. (Results 
+    are same for 0 < theta < 90.)
+
+    Returns:
+    - set[str]: The set of unique conformation IDs of rings.
+    """
+    conf_ids = set(conf_ids)
+
+    # Store conformation IDs that are not duplicates.
+    unique_ids = set()
+
+    while conf_ids:
+        ring = conf_ids.pop()
+        dup_ids = _id_to_dup_ids(ring, theta)
+
+        # Choose the conformation ID with the maximum value
+        # as the representative of the duplicates.
+        unique_ids.add(max(dup_ids))
+
+        # Remove the duplicates from the list of conformation IDs
+        # since they are already included in the representative.
+        conf_ids -= dup_ids
+
+    return unique_ids
+
+
+def _id_to_dup_ids(conf_id: str, theta: float) -> set[str]:
     """
     Convert a conformation ID to a set of conformation IDs that are
     duplicates of the input conformation ID.
@@ -50,40 +86,40 @@ def id_to_dup_ids(conf_id: str, theta: float) -> set[str]:
     """
     ids = {conf_id}
     # Type 1: Different cut points.
-    ids.update(different_cut_points(conf_id))
+    ids.update(_different_cut_points(conf_id))
 
     # Type 2: Reversed conformation IDs.
     for cur_id in ids.copy():
-        ids.add(order_reversed(cur_id))
+        ids.add(_order_reversed(cur_id))
 
     # Type 3: Enantiomers.
     for cur_id in ids.copy():
-        ids.add(enantiomer(cur_id))
+        ids.add(_enantiomer(cur_id))
 
     if theta == 0:
         for cur_id in ids.copy():
             # Type 4: lig-con set reverse.
-            ids.update(lig_con_set_revs(cur_id))
+            ids.update(_lig_con_set_revs(cur_id))
 
     if theta == 90:
         # Type 5: R-L rev.
         for cur_id in ids.copy():
-            ids.update(rl_revs(cur_id))
+            ids.update(_rl_revs(cur_id))
 
     return ids
 
 
 # Type 1: Different cut points.
 # e.g. "RRFFLLBB" and "LLBBRRFF"
-def different_cut_points(conf_id: str) -> list[str]:
+def _different_cut_points(conf_id: str) -> list[str]:
     return [
-        conf_id[i*4:] + conf_id[:i*4] 
+        conf_id[i*4:] + conf_id[:i*4]
         for i in range(len(conf_id) // 4)]
 
 
 # Type 2: Reversed conformation IDs.
 # e.g. "RRFFLLBB" and "LLFFRRBB"
-def order_reversed(conf_id: str) -> str:
+def _order_reversed(conf_id: str) -> str:
     tail = conf_id[-2:]  # "RRFFLLBB" -> "BB"
     body = conf_id[:-2]  # "RRFFLLBB" -> "RRFFLL"
     return body[-1::-1] + tail[-1::-1]  # "LLFFRR" + "BB" -> "LLFFRRBB"
@@ -91,7 +127,7 @@ def order_reversed(conf_id: str) -> str:
 
 # Type 3: Enantiomers.
 # e.g. "RRFFLLBB" and "LLFFRRBB"
-def enantiomer(conf_id: str) -> str:
+def _enantiomer(conf_id: str) -> str:
     return conf_id.translate(str.maketrans("RL", "LR"))  # "RRFFLLBB" -> "LLBBRRFF"
 
 
@@ -99,13 +135,13 @@ def enantiomer(conf_id: str) -> str:
 # If theta = 0, structures remain the same when 
 # adjacent ligand type and connection type is both reversed.
 # e.g. "RRFF"="RLBF", "RRBB"="RLFB", "RRFF"="LRFB".
-def lig_con_set_revs(conf_id: str) -> set[str]:
+def _lig_con_set_revs(conf_id: str) -> set[str]:
     ids = set()
     cur_id_2 = conf_id[1:] + conf_id[0]  # "RRFF" -> "RFFR"
-    
+
     # "RFFR" -> ["RF", "FR"]
     lig_con_sets = [
-        cur_id_2[i:i+2] for i in range(0, len(cur_id_2), 2)]  
+        cur_id_2[i:i+2] for i in range(0, len(cur_id_2), 2)]
 
     # Enumerate all the possible combinations of if the ligand type and
     # the connection type are reversed.
@@ -120,11 +156,13 @@ def lig_con_set_revs(conf_id: str) -> set[str]:
                 new_lig_con_set_list.append(lig_con_set)
         new_id_2 = "".join(new_lig_con_set_list)
         ids.add(new_id_2[-1] + new_id_2[:-1])
-    
+
     return ids
 
 
-def rl_revs(conf_id: str) -> set[str]:
+# Type 5: All possible R-L reversals. (Only for theta = 90)
+# e.g. "RRFFRRFB" and "RRFFRLFB"
+def _rl_revs(conf_id: str) -> set[str]:
     ids = set()
 
     lig_tyes, con_types = conf_id_to_lig_and_con_types(conf_id)

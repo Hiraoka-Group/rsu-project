@@ -4,8 +4,8 @@ import numpy as np
 import pytest
 from scipy.spatial.transform import Rotation as R
 
-from rsuanalyzer.core.lig import (rot_ab1, rot_ac, x_ab_coord_a, x_ac_coord_a,
-                                  x_bc_coord_a)
+from rsuanalyzer.calc_rsu.ligand import (rot_ab1, rot_ac, x_ab_coord_a,
+                                         x_ac_coord_a, x_bc_coord_a)
 
 
 def cos_deg(deg):

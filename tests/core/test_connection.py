@@ -2,7 +2,7 @@ from math import cos, radians, sin
 
 import numpy as np
 
-from rsuanalyzer.core.chain import calc_chain_end, calc_con_rot
+from rsuanalyzer.calc_rsu.connection import calc_con_rot
 
 
 def sin_deg(deg):
@@ -66,13 +66,3 @@ def test_calc_con_rot_case_5():
         [1, 0, 0]
     ]
     assert np.allclose(rot.as_matrix(), EXPECTED)
-
-
-
-# Test the function calc_chain_end.
-# case 1: (conf_id, theta, delta_) = ("RR(FF)RL", 30, 90)
-
-def test_calc_chain_end_case_1():
-    x, rot = calc_chain_end("RRFFRL", 30, 90)
-    EXPECTED_X = [1.2, 1.3, -1.2]
-    assert np.allclose(x, EXPECTED_X, atol=1e-1)

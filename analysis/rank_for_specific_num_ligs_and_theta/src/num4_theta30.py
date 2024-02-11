@@ -1,6 +1,6 @@
 import os
 
-from rsuanalyzer.ranker.make_rank_table import make_rank_table
+from rsuanalyzer.analyze_rsu.make_rank_table import make_rank_table
 
 NUM_LIGS = 4
 THETA = 30

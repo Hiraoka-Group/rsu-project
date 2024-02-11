@@ -1,7 +1,8 @@
 import os
 
-from rsuanalyzer.ranker.enum_conf_ids import (enum_conf_ids_including_dups,
-                                              exclude_duplicates)
+from rsuanalyzer.enum_ids.enum_including_dups import \
+    enum_conf_ids_including_dups
+from rsuanalyzer.enum_ids.exclude_dups import exclude_duplicates
 
 THETA = 30
 OUTPUT_FOLDER = "analysis/enum_ring_groups/output"

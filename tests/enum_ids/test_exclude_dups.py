@@ -1,10 +1,11 @@
 import numpy as np
 import pytest
 
-from rsuanalyzer.core.rsu import calc_rsu
-from rsuanalyzer.ranker.conf_group import (different_cut_points, enantiomer,
-                                           id_to_dup_ids, lig_con_set_revs,
-                                           order_reversed)
+from rsuanalyzer.calc_rsu.rsu import calc_rsu
+from rsuanalyzer.enum_ids.exclude_dups import (_different_cut_points,
+                                               _enantiomer, _id_to_dup_ids,
+                                               _lig_con_set_revs,
+                                               _order_reversed)
 
 
 @pytest.mark.parametrize(
@@ -15,7 +16,7 @@ from rsuanalyzer.ranker.conf_group import (different_cut_points, enantiomer,
     ]
 )
 def test_different_cut_points(conf_id, expected):
-    assert different_cut_points(conf_id) == expected
+    assert _different_cut_points(conf_id) == expected
 
 
 @pytest.mark.parametrize(
@@ -26,7 +27,7 @@ def test_different_cut_points(conf_id, expected):
     ]
 )
 def test_order_reversed(conf_id, expected):
-    assert order_reversed(conf_id) == expected
+    assert _order_reversed(conf_id) == expected
 
 
 @pytest.mark.parametrize(
@@ -37,7 +38,7 @@ def test_order_reversed(conf_id, expected):
     ]
 )
 def test_enantiomer(conf_id, expected):
-    assert enantiomer(conf_id) == expected
+    assert _enantiomer(conf_id) == expected
 
 
 @pytest.mark.parametrize(
@@ -53,7 +54,7 @@ def test_enantiomer(conf_id, expected):
     ]
 )
 def test_lig_con_set_revs(conf_id, expected):
-    assert lig_con_set_revs(conf_id) == expected
+    assert _lig_con_set_revs(conf_id) == expected
 
 
 @pytest.mark.parametrize(
@@ -110,7 +111,7 @@ def test_lig_con_set_revs(conf_id, expected):
     ]
 )
 def test_id_to_ids_in_same_group(conf_id, theta, expected):
-    assert id_to_dup_ids(conf_id, theta) == expected
+    assert _id_to_dup_ids(conf_id, theta) == expected
 
 
 
@@ -127,6 +128,6 @@ def test_id_to_ids_in_same_group(conf_id, theta, expected):
 )
 def test_ids_from_same_group_have_same_rsu(conf_id, theta):
     rsu = calc_rsu(conf_id, theta, 87)
-    for conf_id2 in id_to_dup_ids(conf_id, theta):
+    for conf_id2 in _id_to_dup_ids(conf_id, theta):
         rsu2 = calc_rsu(conf_id2, theta, 87)
         assert np.isclose(rsu, rsu2), f"RSU of {conf_id} and {conf_id2} are not the same. {rsu} != {rsu2} (theta={theta})"
