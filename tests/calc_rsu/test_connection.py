@@ -3,7 +3,7 @@ from math import cos, radians, sin
 import numpy as np
 import pytest
 
-from rsuanalyzer.calc_rsu.connection import calc_con_rot
+from rsuanalyzer.calc_rsu.connection import rot_ca
 
 
 def sin_deg(deg):
@@ -43,5 +43,5 @@ def cos_deg(deg):
     ]
 )
 def test_calc_con_rot(con_type, delta_, expected):
-    rot = calc_con_rot(con_type, delta_)
+    rot = rot_ca(con_type, delta_)
     assert np.allclose(rot.as_matrix(), expected)

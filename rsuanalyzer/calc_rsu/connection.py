@@ -3,7 +3,7 @@ from typing import Literal
 from scipy.spatial.transform import Rotation as R
 
 
-def calc_con_rot(
+def rot_ca(
         con_type: Literal["FF", "FB", "BF", "BB"], delta_: float
         ) -> R:
     """
