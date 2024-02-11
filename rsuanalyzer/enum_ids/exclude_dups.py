@@ -1,8 +1,8 @@
 from itertools import product
 from typing import Iterable
 
-from rsuanalyzer.calc_rsu.conf_id_to_lig_and_con_types import \
-    conf_id_to_lig_and_con_types
+from rsuanalyzer.calc_rsu.conf_id_to_lig_and_types import (
+    conf_id_to_con_types, conf_id_to_lig_types)
 
 
 def exclude_duplicates(
@@ -165,7 +165,8 @@ def _lig_con_set_revs(conf_id: str) -> set[str]:
 def _rl_revs(conf_id: str) -> set[str]:
     ids = set()
 
-    lig_tyes, con_types = conf_id_to_lig_and_con_types(conf_id)
+    lig_tyes = conf_id_to_lig_types(conf_id)
+    con_types = conf_id_to_con_types(conf_id)
 
     for cur_lig_types in product(["RR", "RL", "LR", "LL"], repeat=len(lig_tyes)):
         new_lig_con_types = []

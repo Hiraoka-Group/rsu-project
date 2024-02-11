@@ -1,8 +1,9 @@
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 
-from .conf_id_to_lig_and_con_types import conf_id_to_lig_and_con_types
-from .connection import calc_con_rot
+from .conf_id_to_lig_and_types import (conf_id_to_con_types,
+                                       conf_id_to_lig_types)
+from .connection import rot_ca
 from .ligand import rot_ac, x_ac_coord_a
 
 
@@ -31,7 +32,8 @@ def calc_lig_ends_in_chain(
     of the ligands.
     """
     lig_ends = []
-    lig_types, con_types = conf_id_to_lig_and_con_types(conf_id)
+    lig_types = conf_id_to_lig_types(conf_id)
+    con_types = conf_id_to_con_types(conf_id)
 
     # Position vector of the end of the most recent ligand measured 
     # from the global coordinate system.
@@ -53,7 +55,7 @@ def calc_lig_ends_in_chain(
     rot_of_prev_lig_end = local_d_rot_of_first_lig
 
     for lig_type, con_type in zip(lig_types[1:], con_types):
-        con_rot = calc_con_rot(con_type, delta_)
+        con_rot = rot_ca(con_type, delta_)
         local_d_x = x_ac_coord_a(lig_type, theta)
         local_d_rot = rot_ac(lig_type, theta)
         
