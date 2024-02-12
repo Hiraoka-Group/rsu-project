@@ -3,4 +3,3 @@ tempCodeRunnerFile.py
 __pycache__/
 .venv/
 *.code-workspace
-poetry.lock
