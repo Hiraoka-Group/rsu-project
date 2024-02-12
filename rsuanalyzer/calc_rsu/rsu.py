@@ -21,7 +21,7 @@ def calc_rsu(
             Tilting angle of the two C-C bonds in the ligand
             in degrees. 0 <= theta <= 90.
         delta_ (float): 
-            Angle in degrees. 0 < delta_ <= 180.
+            Angle in degrees. 0 < delta\_ <= 180.
         
     Returns:
         float: The RSU for the ring.
@@ -54,10 +54,10 @@ def _ring_id_to_chain_ids(conf_id_of_ring: str) -> list[str]:
         list[str]: The list of conformation IDs of chains.
     
     Examples:
-    >>> ring_to_chains("RRFFRLFF")
-    ['RRFFRL', 'RLFFRR']
-    >>> ring_to_chains("RRFFRLFFRRBF")
-    ['RRFFRLFFRR', 'RRBFRRFFRL', 'RLFFRRBFRR']
+        >>> ring_to_chains("RRFFRLFF")
+        ['RRFFRL', 'RLFFRR']
+        >>> ring_to_chains("RRFFRLFFRRBF")
+        ['RRFFRLFFRR', 'RRBFRRFFRL', 'RLFFRRBFRR']
     """
     # Validate the input.
     if len(conf_id_of_ring) % 4 != 0:

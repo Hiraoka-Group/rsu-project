@@ -19,7 +19,7 @@ def make_rank_table(
             The tilt angle of C-C bonds. (unit: degree) 
             0 <= theta <= 90.
         delta_ (float): 
-            N-Pd-N angle. (unit: degree) 0 < delta_ <= 180.
+            N-Pd-N angle. (unit: degree) 0 < delta\_ <= 180.
         top_num (int, optional): 
             The number of top-ranked rings. Default is 10.
 

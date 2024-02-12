@@ -11,11 +11,11 @@ from rsuanalyzer.calc_rsu.rsu import calc_rsu
 
 CONF_ID_OF_RING = "RLFFRLFFRLFF"
 THETAS = range(0, 91, 1)
-DELTA_ = 90
+delta_ = 90
 
 df = pd.DataFrame({
     "theta": THETAS,
-    "rsu": [calc_rsu(CONF_ID_OF_RING, theta, DELTA_) for theta in THETAS]
+    "rsu": [calc_rsu(CONF_ID_OF_RING, theta, delta_) for theta in THETAS]
     })
 
 OUTPUT_FOLDER = "analysis/rsu_vs_theta_for_specific_ring/output/"

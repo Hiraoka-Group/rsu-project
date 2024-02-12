@@ -14,6 +14,7 @@ def transpose_to_xyz(points: list[list[float]]) -> list[list[float]]:
             [[x1, x2, ...], [y1, y2, ...], [z1, z2, ...]].
 
     Example:
+    
     >>> transpose_to_xyz([[1, 2, 3], [4, 5, 6]])
     [[1, 4], [2, 5], [3, 6]]
     """

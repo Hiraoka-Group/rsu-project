@@ -18,7 +18,7 @@ def calc_chain_end_dist(
         conf_id (str): Conformation ID of the chain, e.g., "RRFFRL".
         theta (float): Tilting angle of the two C-C bonds in the ligand
         in degrees. 0 <= theta <= 90.
-        delta_ (float): Angle in degrees. 0 < delta_ <= 180.
+        delta_ (float): Angle in degrees. 0 < delta\_ <= 180.
 
     Returns:
         float: The distance between the two ends of the chain.
@@ -43,7 +43,7 @@ def calc_global_lig_ends_in_chain(
         conf_id (str): Conformation ID of the chain, e.g., "RRFFRL".
         theta (float): Tilting angle of the two C-C bonds in the ligand
         in degrees. 0 <= theta <= 90.
-        delta_ (float): Angle in degrees. 0 < delta_ <= 180.
+        delta_ (float): Angle in degrees. 0 < delta\_ <= 180.
 
     Returns:
         list[tuple[np.ndarray, R]]: 

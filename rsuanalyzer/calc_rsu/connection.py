@@ -16,7 +16,7 @@ def rot_ca(
 
     Args:
         con_type (Literal["FF", "FB", "BF", "BB"]): Connection type.
-        delta_ (float): N-M-N angle in degrees. 0 < delta_ <= 180.
+        delta_ (float): N-M-N angle in degrees. 0 < delta\_ <= 180.
 
     Returns:
         R: The rotation from the coordinate system C of the current
