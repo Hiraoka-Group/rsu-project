@@ -25,7 +25,7 @@ def calc_chain_end_dist(
     """
     # x is the position vector of the end of the last ligand measured
     # from the global coordinate system.
-    x, _ = calc_lig_ends_in_chain(conf_id, theta, delta_)[-1]
+    x, _ = calc_global_lig_ends_in_chain(conf_id, theta, delta_)[-1]
 
     # Since the position of the other end is (0, 0, 0) in the global
     # coordinate system, the distance between the two ends is the
@@ -33,11 +33,11 @@ def calc_chain_end_dist(
     return np.linalg.norm(x)
 
 
-def calc_lig_ends_in_chain(
+def calc_global_lig_ends_in_chain(
         conf_id: str, theta: float, delta_: float
         ) -> list[tuple[np.ndarray, R]]:
     """Calculate the positions and rotations of the ends of the ligands
-    in the chain.
+    in the chain measured from the global coordinate system.
 
     Args:
         conf_id (str): Conformation ID of the chain, e.g., "RRFFRL".
