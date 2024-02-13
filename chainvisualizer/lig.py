@@ -8,8 +8,8 @@ from typing import Literal
 
 import numpy as np
 
-from rsuanalyzer.calc_rsu.ligand import (rot_ab1, rot_ac, x_ab_coord_a,
-                                         x_bc_coord_a)
+from rsuanalyzer.calc_rsu.ligand import (_rot_ab1, _rot_ac, _x_ab_coord_a,
+                                         _x_bc_coord_a)
 
 
 def calc_c_positions_of_frags_in_lig(
@@ -23,9 +23,9 @@ def calc_c_positions_of_frags_in_lig(
     coordinate system A. For details on the coordinate system A, 
     refer to the associated paper.
 
-    Note:
+    Caution:
         This function is intended to provide an approximate 
-        visualization of the chain structure. It may not accurately 
+        visualization of the ligand structure. It may not accurately 
         represent the precise positions of the atoms.
 
     Args:
@@ -79,14 +79,14 @@ def calc_c_positions_of_frags_in_lig(
     
     # Central benzene ring
     second_hex = [
-        rot_ab1(lig_type, theta).apply(vtx)
-        + x_ab_coord_a(lig_type, theta) for vtx in hex]
+        _rot_ab1(lig_type, theta).apply(vtx)
+        + _x_ab_coord_a(lig_type, theta) for vtx in hex]
     
     # Pyridine ring adjacent to the next ligand
     third_hex = [
-        rot_ac(lig_type, theta).apply(vtx) 
-        + x_ab_coord_a(lig_type, theta) 
-        + x_bc_coord_a(lig_type, theta) * (1 - pd_n_dist - hex_radius)
+        _rot_ac(lig_type, theta).apply(vtx) 
+        + _x_ab_coord_a(lig_type, theta) 
+        + _x_bc_coord_a(lig_type, theta) * (1 - pd_n_dist - hex_radius)
         for vtx in hex
         ]
     

@@ -13,7 +13,7 @@ import numpy as np
 from scipy.spatial.transform import Rotation as R
 
 
-def x_ac_coord_a(
+def _x_ac_coord_a(
         lig_type: Literal["RR", "RL", "LR", "LL"], theta: float
         ) -> np.ndarray:
     """Calculate the vector AC in the coordinate system A.
@@ -21,11 +21,11 @@ def x_ac_coord_a(
     For the definitions of the points and the coordinate systems, 
     see the associated paper.
     """
-    return x_ab_coord_a(lig_type, theta) + x_bc_coord_a(
+    return _x_ab_coord_a(lig_type, theta) + _x_bc_coord_a(
         lig_type, theta)
 
 
-def x_ab_coord_a(
+def _x_ab_coord_a(
         lig_type: Literal["RR", "RL", "LR", "LL"], theta: float
         ) -> np.ndarray:
     """Calculate the vector AB in the coordinate system A.
@@ -36,7 +36,7 @@ def x_ab_coord_a(
     return np.array([1, 0, 0])
 
 
-def x_bc_coord_a(
+def _x_bc_coord_a(
         lig_type: Literal["RR", "RL", "LR", "LL"], theta: float
         ) -> np.ndarray:
     """Calculate the vector BC in the coordinate system A.
@@ -54,7 +54,7 @@ def x_bc_coord_a(
         raise ValueError(f"Invalid lig_type: {lig_type}")
 
 
-def rot_ab1(
+def _rot_ab1(
         lig_type: Literal["RR", "RL", "LR", "LL"], theta: float
         ) -> R:
     """Calculate the rotation from the coordinate system A to B1.
@@ -70,7 +70,7 @@ def rot_ab1(
         raise ValueError(f"Invalid lig_type: {lig_type}")
 
 
-def rot_ac(
+def _rot_ac(
         lig_type: Literal["RR", "RL", "LR", "LL"], theta: float
         ) -> R:
     """Calculate the rotation from the coordinate system A to C.

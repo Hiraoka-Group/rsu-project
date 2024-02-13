@@ -19,7 +19,7 @@ def calc_min_rsu_for_thetas(
             The list of tilt angles of C-C bonds. (unit: degree) 
             0 <= theta <= 90.
         delta_ (float): 
-            N-Pd-N angle. (unit: degree) 0 < delta_ <= 180.
+            N-Pd-N angle. (unit: degree) 0 < delta\_ <= 180.
 
     Returns:
         A pandas DataFrame containing the minimum RSU for each theta.
@@ -51,7 +51,7 @@ def _calc_min_rsu_for_specific_theta(
             The tilt angle of C-C bonds. (unit: degree) 
             0 <= theta <= 90.
         delta_ (float): 
-            N-Pd-N angle. (unit: degree) 0 < delta_ <= 180.
+            N-Pd-N angle. (unit: degree) 0 < delta\_ <= 180.
         
     Returns:
         tuple[str, float]: 
