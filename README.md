@@ -49,4 +49,4 @@ Please see the document:
 [Documentation of RSU Analyzer](https://neji-craftsman.github.io/rsuanalyzer-doc/index.html)
 
 ## License
-This project is licensed under the CC BY-NC 4.0 License, following the same terms as the associated paper. See the LICENSE file for details.
+This project is licensed under the CC BY-NC 4.0 License. See the LICENSE file for details.
