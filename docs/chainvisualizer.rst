@@ -1,6 +1,14 @@
 chainvisualizer package
 =======================
 
+About
+---------------
+
+.. automodule:: chainvisualizer
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -24,14 +32,6 @@ chainvisualizer.utils module
 ----------------------------
 
 .. automodule:: chainvisualizer.utils
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: chainvisualizer
    :members:
    :undoc-members:
    :show-inheritance:
