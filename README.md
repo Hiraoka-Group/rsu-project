@@ -46,7 +46,7 @@ This example command runs the `syns1_theta38.py` script located in the `analysis
 
 ## Usage-2: Using RSU Analyzer and Chain Visualizer packages
 Please see the document:
-[Documentation of RSU Analyzer](https://neji-craftsman.github.io/rsuanalyzer-doc/index.html)
+[Documentation of RSU Analyzer](https://hiraoka-group.github.io/rsuanalyzer-doc/)
 
 ## License
 This project is licensed under the CC BY-NC 4.0 License. See the LICENSE file for details.
