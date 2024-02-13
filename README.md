@@ -42,9 +42,7 @@ python3 -m analysis.chain_visualization.syns1_theta38
 This example command runs the `syns1_theta38.py` script located in the `analysis/chain_visualization/src` directory.
 
 > [!IMPORTANT]
-> Ensuring that you execute each module from the project's root directory is essential. Attempting to run modules directly from their respective directories (like the `analysis/chain_visualization/src` directory in this scenario) could lead to import errors. 
-> 
->Therefore, confirm that your current directory, which you can verify using the `pwd` command, is indeed the root directory of the project, namely, `rsuanalyzer`.
+> Ensuring that you execute each module from the project's root directory is essential. Attempting to run modules directly from their respective directories (like the `analysis/chain_visualization/src` directory in this scenario) could lead to import errors.
 
 ## Usage-2: Using RSU Analyzer and Chain Visualizer packages
 Please see the document:
