@@ -40,5 +40,7 @@ html_css_files = [
 html_logo = '_static/logo.svg'
 html_favicon = '_static/favicon.svg'
 
+autodoc_member_order = 'bysource'
+
 # Napoleon settings
 napoleon_use_admonition_for_examples = False

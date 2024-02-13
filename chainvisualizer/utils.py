@@ -1,4 +1,4 @@
-def transpose_to_xyz(points: list[list[float]]) -> list[list[float]]:
+def _transpose_to_xyz(points: list[list[float]]) -> list[list[float]]:
     """Transpose a list of points from the form of 
     [[x1, y1, z1], [x2, y2, z2], ...]
     to the form of [[x1, x2, ...], [y1, y2, ...], [z1, z2, ...]].
@@ -21,7 +21,7 @@ def transpose_to_xyz(points: list[list[float]]) -> list[list[float]]:
     return [list(coord) for coord in zip(*points)]
 
 
-def limit_axis(ax, min_width):
+def _limit_axis(ax, min_width):
     """Set the display limits of the axis to a cube with a minimum width.
     
     If the maximum width of the axis is smaller than the minimum width,

@@ -3,8 +3,8 @@
 from itertools import product
 from typing import Iterable
 
-from rsuanalyzer.calc_rsu.conf_id_to_lig_and_types import (
-    conf_id_to_con_types, conf_id_to_lig_types)
+from rsuanalyzer.calc_rsu.conf_id_to_lig_con_types import (
+    _conf_id_to_con_types, _conf_id_to_lig_types)
 
 
 def exclude_duplicates(
@@ -50,50 +50,55 @@ def _id_to_dup_ids(conf_id: str, theta: float) -> set[str]:
     input conformation ID.
 
     "Duplicates" means conformation IDs that represent the same ring
-    structure. Note that the results include the input conformation ID.
-
-    There are five types of duplicates, and they and their combinations
-    are considered in this function. The types are as follows:
-
-    1. Different Cut Points
-        IDs derived from the same ring by cutting at different points. 
-        (e.g. "RRFFLLBBRRFB", "LLBBRRFBRRFF" and "RRFBRRFFLLBB")
-    2. Reverse Order
-        IDs derived by reading the ligand types and connection types 
-        in the opposite direction along the ring. Note that IDs should
-        start with ligand type, not connection type.
-        (e.g. "RRFFLLFB", "LLFFRRBF")
-    3. Enantiomer
-        IDs being same to each other when all the letters of ligand 
-        types are replaced with the opposite letters, i.e., R -> L and
-        L -> R.
-        (e.g. "RRFFLLFB" and "LLFFRRFB")
-    4. Lig-Con Set Reverse (Only for theta = 0)
-        IDs gained by replacing one or more pairs of "R" or "L" and 
-        "F" or "B", with the reversed ones, e.g. "RF" -> "FR", "FR" 
-        -> "RF", "RB" -> "BR", ...
-        (e.g. "RRFFLLFB", "RLBFLLFB", "RRFFLRBB", "LRFFLLFF", 
-        "RLBFLRBB", ...)
-    5. All Possible R-L Reversals (Only for theta = 90)
-        IDs gained by substituting "R" with "L" and vice versa, 
-        at any one or more positions preserving connection types.
-        (e.g. "RRFFRRFB", "RRFFRLFB", "RRFFLRFB", "RRFFLLFB", 
-        "RLFFRRFB", "RLFFRLFB", ...)
-
-    For more details, see the docstrings of the functions that
-    implement each type of duplicates.
+    structure. 
     
-    Note that the types 4 and 5 are only for theta = 0 and theta = 90, 
-    respectively.
-
     Args:
-    - conf_id (str): Conformation ID of the ring.
-    - theta (float): Tilting angle of the ligand in degree. Note that
-    results are same for 0 < theta < 90.
+        conf_id (str): Conformation ID of the ring.
+        theta (float): Tilting angle of the ligand in degree. Note that
+            results are same for 0 < theta < 90.
 
     Returns:
-    - set[str]: The set of conformation IDs that are duplicates of the
-    input conformation ID. The set includes the input conformation ID.
+        set[str]: The set of conformation IDs that are duplicates of the
+            input conformation ID. The set includes the input conformation ID.
+            
+    Note:
+        The results include the input conformation ID.
+
+    Details:
+        There are five types of duplicates, and they and their combinations
+        are considered in this function. The types are as follows:
+
+        1. Different Cut Points
+            IDs derived from the same ring by cutting at different points. 
+            (e.g. "RRFFLLBBRRFB", "LLBBRRFBRRFF" and "RRFBRRFFLLBB")
+        2. Reverse Order
+            IDs derived by reading the ligand types and connection types 
+            in the opposite direction along the ring. Note that IDs should
+            start with ligand type, not connection type.
+            (e.g. "RRFFLLFB", "LLFFRRBF")
+        3. Enantiomer
+            IDs being same to each other when all the letters of ligand 
+            types are replaced with the opposite letters, i.e., R -> L and
+            L -> R.
+            (e.g. "RRFFLLFB" and "LLFFRRFB")
+        4. Lig-Con Set Reverse (Only for theta = 0)
+            IDs gained by replacing one or more pairs of "R" or "L" and 
+            "F" or "B", with the reversed ones, e.g. "RF" -> "FR", "FR" 
+            -> "RF", "RB" -> "BR", ...
+            (e.g. "RRFFLLFB", "RLBFLLFB", "RRFFLRBB", "LRFFLLFF", 
+            "RLBFLRBB", ...)
+        5. All Possible R-L Reversals (Only for theta = 90)
+            IDs gained by substituting "R" with "L" and vice versa, 
+            at any one or more positions preserving connection types.
+            (e.g. "RRFFRRFB", "RRFFRLFB", "RRFFLRFB", "RRFFLLFB", 
+            "RLFFRRFB", "RLFFRLFB", ...)
+
+    Caution:
+        the types 4 and 5 are only for theta = 0 and theta = 90, 
+        respectively.
+    
+    For more details, see the docstrings of the functions that
+    implement each type of duplicates.
     """
     # Original conformation ID and its duplicates.
     orig_and_dups = {conf_id}
@@ -239,8 +244,8 @@ def _all_possible_rl_revs(conf_id: str) -> set[str]:
     """
     ids = set()
 
-    lig_tyes = conf_id_to_lig_types(conf_id)
-    con_types = conf_id_to_con_types(conf_id)
+    lig_tyes = _conf_id_to_lig_types(conf_id)
+    con_types = _conf_id_to_con_types(conf_id)
 
     for cur_lig_types in product(
         ["RR", "RL", "LR", "LL"], repeat=len(lig_tyes)):

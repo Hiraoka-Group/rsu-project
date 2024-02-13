@@ -5,7 +5,7 @@ from typing import Literal
 from scipy.spatial.transform import Rotation as R
 
 
-def rot_ca(
+def _rot_ca(
         con_type: Literal["FF", "FB", "BF", "BB"], delta_: float
         ) -> R:
     """Calculate the rotation for connection on metal.

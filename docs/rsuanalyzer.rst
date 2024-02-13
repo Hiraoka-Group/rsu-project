@@ -15,6 +15,6 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   rsuanalyzer.analyze_rsu
    rsuanalyzer.calc_rsu
+   rsuanalyzer.analyze_rsu
    rsuanalyzer.enum_ids

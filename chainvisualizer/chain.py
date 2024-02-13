@@ -2,9 +2,9 @@
 
 import numpy as np
 
-from rsuanalyzer.calc_rsu.chain import calc_global_lig_ends_in_chain, rot_ca
-from rsuanalyzer.calc_rsu.conf_id_to_lig_and_types import (
-    conf_id_to_con_types, conf_id_to_lig_types)
+from rsuanalyzer.calc_rsu.chain import _rot_ca, calc_global_lig_ends_in_chain
+from rsuanalyzer.calc_rsu.conf_id_to_lig_con_types import (
+    _conf_id_to_con_types, _conf_id_to_lig_types)
 
 from .lig import calc_c_positions_of_frags_in_lig
 
@@ -13,6 +13,11 @@ def calc_metal_positions(
         conf_id: str, theta: float, delta_: float
         ) -> list[np.ndarray]:
     """Calculate the positions of the metal atoms in a chain.
+
+    Caution:
+        This function is intended to provide an approximate 
+        visualization of the chain structure. It may not accurately 
+        represent the precise positions of the atoms.
 
     Args:
         conf_id (str): The conformation ID of the chain, e.g. "RRFFLL".
@@ -91,8 +96,8 @@ def calc_carbon_positions(
         >>> ax.set_box_aspect([1, 1, 1])
         >>> plt.show()
     """
-    lig_types = conf_id_to_lig_types(conf_id)  # "RRFFLL" -> ["RR", "LL"]
-    con_types = conf_id_to_con_types(conf_id)  # "RRFFLL" -> ["FF"]
+    lig_types = _conf_id_to_lig_types(conf_id)  # "RRFFLL" -> ["RR", "LL"]
+    con_types = _conf_id_to_con_types(conf_id)  # "RRFFLL" -> ["FF"]
 
     # global_lig_ends: [(x1, rot1), (x2, rot2), ...]
     #   x (np.ndarray): position of the end of the ligand in the 
@@ -116,7 +121,7 @@ def calc_carbon_positions(
     for lig_type, con_type, prev_lig_end in zip(
             lig_types[1:], con_types, global_lig_ends[:-1]):
         x_of_prev_lig_end, rot_of_prev_lig_end = prev_lig_end
-        rot_ca_ = rot_ca(con_type, delta_)
+        rot_ca_ = _rot_ca(con_type, delta_)
         local_carbon_positions = calc_c_positions_of_frags_in_lig(
             lig_type, theta)
         

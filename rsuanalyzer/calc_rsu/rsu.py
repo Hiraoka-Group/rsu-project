@@ -21,7 +21,7 @@ def calc_rsu(
             Tilting angle of the two C-C bonds in the ligand
             in degrees. 0 <= theta <= 90.
         delta_ (float): 
-            Angle in degrees. 0 < delta\_ <= 180.
+            N-Pd-N angle in degrees. 0 < delta\_ <= 180.
         
     Returns:
         float: The RSU for the ring.

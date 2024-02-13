@@ -4,8 +4,8 @@ import numpy as np
 import pytest
 from scipy.spatial.transform import Rotation as R
 
-from rsuanalyzer.calc_rsu.ligand import (rot_ab1, rot_ac, x_ab_coord_a,
-                                         x_ac_coord_a, x_bc_coord_a)
+from rsuanalyzer.calc_rsu.ligand import (_rot_ab1, _rot_ac, _x_ab_coord_a,
+                                         _x_ac_coord_a, _x_bc_coord_a)
 
 
 def cos_deg(deg):
@@ -25,7 +25,7 @@ def sin_deg(deg):
     ]
 )
 def test_rot_ab1(lig_type, theta, expected_rot_ab1: R):
-    assert np.allclose(rot_ab1(lig_type, theta).as_matrix(), expected_rot_ab1.as_matrix())
+    assert np.allclose(_rot_ab1(lig_type, theta).as_matrix(), expected_rot_ab1.as_matrix())
 
 
 @pytest.mark.parametrize(
@@ -38,11 +38,11 @@ def test_rot_ab1(lig_type, theta, expected_rot_ab1: R):
     ]
 )
 def test_rot_ac(lig_type, theta, expected_rot_ac: R):
-    assert np.allclose(rot_ac(lig_type, theta).as_matrix(), expected_rot_ac.as_matrix())
+    assert np.allclose(_rot_ac(lig_type, theta).as_matrix(), expected_rot_ac.as_matrix())
 
 
 def test_x_ab_coord_a():
-    assert np.allclose(x_ab_coord_a("RR", 30), np.array([1, 0, 0]))
+    assert np.allclose(_x_ab_coord_a("RR", 30), np.array([1, 0, 0]))
 
 
 @pytest.mark.parametrize(
@@ -55,8 +55,8 @@ def test_x_ab_coord_a():
     ]
 )
 def test_x_bc_coord_a(lig_type, theta, expected_x_bc_coord_a):
-    assert np.allclose(x_bc_coord_a(lig_type, theta), expected_x_bc_coord_a)
+    assert np.allclose(_x_bc_coord_a(lig_type, theta), expected_x_bc_coord_a)
 
 
 def test_x_ac_coord_a():
-    assert np.allclose(x_ac_coord_a("RR", 30), x_ab_coord_a("RR", 30) + x_bc_coord_a("RR", 30))
+    assert np.allclose(_x_ac_coord_a("RR", 30), _x_ab_coord_a("RR", 30) + _x_bc_coord_a("RR", 30))

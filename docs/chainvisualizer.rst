@@ -21,11 +21,3 @@ lig
    :members:
    :undoc-members:
    :show-inheritance:
-
-utils
-----------------------------
-
-.. automodule:: chainvisualizer.utils
-   :members:
-   :undoc-members:
-   :show-inheritance:

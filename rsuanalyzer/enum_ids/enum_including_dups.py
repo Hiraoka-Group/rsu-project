@@ -6,9 +6,10 @@ from itertools import product
 def enum_conf_ids_including_dups(num_of_ligs: int) -> set[str]:
     """Enumerate all possible conformation IDs of rings.
 
-    Note that this function includes duplicate conformation IDs, i.e.,
-    conformation IDs that represent the same ring structure, e.g. 
-    "RRFFLLBB" and "LLBBRRFF", or "RRFFRRFF" and "LLFFLLFF".
+    Note: 
+        this function includes duplicate conformation IDs, i.e.,
+        conformation IDs that represent the same ring structure, e.g. 
+        "RRFFLLBB" and "LLBBRRFF", or "RRFFRRFF" and "LLFFLLFF".
 
     Args:
         num_of_ligs (int): 
