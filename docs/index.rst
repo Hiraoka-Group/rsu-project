@@ -32,8 +32,8 @@ Contents
    :maxdepth: 2
    :titlesonly:
 
-   rsuanalyzer
-   chainvisualizer
+   RSU Analyzer <rsuanalyzer>
+   Chain Visualizer <chainvisualizer>
 
 Indices and tables
 ----------------------------------------

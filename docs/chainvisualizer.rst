@@ -1,16 +1,10 @@
 chainvisualizer
 =======================
 
-About
----------------
-
 .. automodule:: chainvisualizer
    :members:
    :undoc-members:
    :show-inheritance:
-
-Submodules
-----------
 
 chain
 ----------------------------
