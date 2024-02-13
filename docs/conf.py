@@ -19,7 +19,7 @@ author = 'Hiraoka Laboratory, The University of Tokyo'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon']
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon', 'sphinx.ext.githubpages']
 
 
 templates_path = ['_templates']
@@ -33,5 +33,12 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 html_theme = 'pydata_sphinx_theme'
 html_static_path = ['_static']
 
+html_css_files = [
+    'css/custom.css',
+]
+
 html_logo = '_static/logo.svg'
 html_favicon = '_static/favicon.svg'
+
+# Napoleon settings
+napoleon_use_admonition_for_examples = False
