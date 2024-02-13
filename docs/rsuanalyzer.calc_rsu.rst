@@ -1,10 +1,7 @@
-rsuanalyzer.calc\_rsu package
+rsuanalyzer.calc\_rsu
 =============================
 
-Submodules
-----------
-
-rsuanalyzer.calc\_rsu.chain module
+chain
 ----------------------------------
 
 .. automodule:: rsuanalyzer.calc_rsu.chain
@@ -12,7 +9,7 @@ rsuanalyzer.calc\_rsu.chain module
    :undoc-members:
    :show-inheritance:
 
-rsuanalyzer.calc\_rsu.conf\_id\_to\_lig\_and\_types module
+conf\_id\_to\_lig\_and\_types
 ----------------------------------------------------------
 
 .. automodule:: rsuanalyzer.calc_rsu.conf_id_to_lig_and_types
@@ -20,7 +17,7 @@ rsuanalyzer.calc\_rsu.conf\_id\_to\_lig\_and\_types module
    :undoc-members:
    :show-inheritance:
 
-rsuanalyzer.calc\_rsu.connection module
+connection
 ---------------------------------------
 
 .. automodule:: rsuanalyzer.calc_rsu.connection
@@ -28,7 +25,7 @@ rsuanalyzer.calc\_rsu.connection module
    :undoc-members:
    :show-inheritance:
 
-rsuanalyzer.calc\_rsu.ligand module
+ligand
 -----------------------------------
 
 .. automodule:: rsuanalyzer.calc_rsu.ligand
@@ -36,18 +33,10 @@ rsuanalyzer.calc\_rsu.ligand module
    :undoc-members:
    :show-inheritance:
 
-rsuanalyzer.calc\_rsu.rsu module
+rsu
 --------------------------------
 
 .. automodule:: rsuanalyzer.calc_rsu.rsu
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: rsuanalyzer.calc_rsu
    :members:
    :undoc-members:
    :show-inheritance:

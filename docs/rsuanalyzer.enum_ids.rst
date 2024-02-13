@@ -1,10 +1,7 @@
-rsuanalyzer.enum\_ids package
+rsuanalyzer.enum\_ids
 =============================
 
-Submodules
-----------
-
-rsuanalyzer.enum\_ids.enum\_including\_dups module
+enum\_including\_dups
 --------------------------------------------------
 
 .. automodule:: rsuanalyzer.enum_ids.enum_including_dups
@@ -12,18 +9,10 @@ rsuanalyzer.enum\_ids.enum\_including\_dups module
    :undoc-members:
    :show-inheritance:
 
-rsuanalyzer.enum\_ids.exclude\_dups module
+exclude\_dups
 ------------------------------------------
 
 .. automodule:: rsuanalyzer.enum_ids.exclude_dups
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: rsuanalyzer.enum_ids
    :members:
    :undoc-members:
    :show-inheritance:

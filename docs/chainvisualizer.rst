@@ -1,4 +1,4 @@
-chainvisualizer package
+chainvisualizer
 =======================
 
 About
@@ -12,7 +12,7 @@ About
 Submodules
 ----------
 
-chainvisualizer.chain module
+chain
 ----------------------------
 
 .. automodule:: chainvisualizer.chain
@@ -20,7 +20,7 @@ chainvisualizer.chain module
    :undoc-members:
    :show-inheritance:
 
-chainvisualizer.lig module
+lig
 --------------------------
 
 .. automodule:: chainvisualizer.lig
@@ -28,7 +28,7 @@ chainvisualizer.lig module
    :undoc-members:
    :show-inheritance:
 
-chainvisualizer.utils module
+utils
 ----------------------------
 
 .. automodule:: chainvisualizer.utils

@@ -1,4 +1,4 @@
-rsuanalyzer package
+rsuanalyzer
 ===================
 
 About
