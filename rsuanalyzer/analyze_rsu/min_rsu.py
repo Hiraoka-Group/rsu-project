@@ -58,6 +58,8 @@ def _calc_min_rsu_for_specific_theta(
             The conformation ID of the ring with the minimum RSU 
             and the minimum RSU.
     """
+
+    ring_ids = sorted(list(ring_ids), reverse=True)
     
     rsu_list = [
         calc_rsu(ring_id, theta, delta_) for ring_id in ring_ids]

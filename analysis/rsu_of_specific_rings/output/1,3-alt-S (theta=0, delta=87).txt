@@ -5,4 +5,4 @@ Theta /deg.     : 0
 Delta /deg.     : 87
 
 # OUTPUT
-Calculated RSU  : 0.284011578149671
+Calculated RSU  : 0.28401157814967104

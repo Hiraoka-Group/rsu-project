@@ -141,6 +141,8 @@ def test_all_possible_rl_revs(conf_id, expected):
         ("RRFFLLFBRRBB", 30),
         ("RRFFLLFBRRBB", 0),
         ("RRFFLLFBRRBB", 90),
+        ("RRFBRRFB", 0),
+        ("RLFFLRFF", 10),
     ]
 )
 def test_ids_from_same_group_have_same_rsu(conf_id, theta):
