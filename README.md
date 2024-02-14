@@ -49,4 +49,4 @@ Please see the document:
 [Documentation of RSU Analyzer](https://hiraoka-group.github.io/rsuanalyzer-doc/)
 
 ## License
-This project is licensed under the CC BY-NC 4.0 License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the LICENSE file for details.
