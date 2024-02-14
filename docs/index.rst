@@ -22,18 +22,16 @@ For more detailed information, please refer to the associated research paper. (D
 
 Key Components
 ----------------------------------------
-- Scripts for reproducing and analyzing the results presented in the paper, along with the generated results (located in the `analysis` directory). These scripts utilize functionalities provided by the :doc:`RSU Analyzer <rsuanalyzer>` and :doc:`Chain Visualizer <chainvisualizer>` below.
+- Scripts for reproducing and analyzing the results presented in the paper, along with the generated results (located in the `analysis` directory). These scripts utilize functionalities provided by the :doc:`RSU Analyzer <rsuanalyzer>` below.
 - The :doc:`RSU Analyzer <rsuanalyzer>`, which contains tools for RSU analysis.
-- The :doc:`Chain Visualizer <chainvisualizer>`, which provides utilities for visualizing chains using matplotlib 3D plots.
 
 Contents
 ----------------------------------------
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :titlesonly:
 
    RSU Analyzer <rsuanalyzer>
-   Chain Visualizer <chainvisualizer>
 
 Indices and tables
 ----------------------------------------
