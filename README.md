@@ -25,11 +25,34 @@ git clone https://github.com/Hiraoka-Group/rsuanalyzer.git
 cd rsuanalyzer
 ```
 
-3. Install the required packages:
+3. Create a virtual environment:
+```bash
+python3 -m venv .venv
+```
+
+4. Activate the environment:
+```bash
+source .venv/bin/activate
+```
+
+5. If you don't have Poetry installed, install it via pip:
+```bash
+pip install poetry
+```
+
+6. Install the required packages:
 ```bash
 poetry install
 ```
 
+Now, you can run the scripts located in the analysis directory. 
+For more details, refer to the following section, "Usage-1".
+
+> [!NOTE]
+> To deactivate the virtual environment, simply run:
+> ```bash
+> deactivate
+> ```
 
 ## Usage-1: Reproducing the results in the paper
 To reproduce the results presented in the paper, run the scripts located in the `analysis` directory.
@@ -42,7 +65,13 @@ python3 -m analysis.chain_visualization.src.syns1_theta38
 This example command runs the `syns1_theta38.py` script located in the `analysis/chain_visualization/src` directory.
 
 > [!IMPORTANT]
-> Ensuring that you execute each module from the project's root directory is essential. Attempting to run modules directly from their respective directories (like the `analysis/chain_visualization/src` directory in this scenario) could lead to import errors.
+> Ensure that the virtual environment is activated. If it is not, run the following command:
+> ```bash
+> source .venv/bin/activate
+> ```
+
+> [!IMPORTANT]
+> It is crucial to execute each module from the project's root directory. Attempting to run modules directly from their respective directories (such as the `analysis/chain_visualization/src` directory in this scenario) could result in import errors.
 
 ## Usage-2: Using RSU Analyzer and Chain Visualizer packages
 Please see the document:
