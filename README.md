@@ -17,7 +17,7 @@ To install the project, follow these steps:
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/neji-craftsman/rsuanalyzer.git
+git clone https://github.com/Hiraoka-Group/rsuanalyzer.git
 ```
 
 2. Navigate to the project directory:
