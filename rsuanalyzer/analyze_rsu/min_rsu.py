@@ -59,7 +59,7 @@ def _calc_min_rsu_for_specific_theta(
             and the minimum RSU.
     """
 
-    ring_ids = sorted(list(ring_ids))
+    ring_ids = sorted(list(ring_ids), reverse=True)
     
     rsu_list = [
         calc_rsu(ring_id, theta, delta_) for ring_id in ring_ids]
