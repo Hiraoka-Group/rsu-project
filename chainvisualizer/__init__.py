@@ -1,1 +1,0 @@
-"""This package provides a set of tools for visualizing chains and ligands."""

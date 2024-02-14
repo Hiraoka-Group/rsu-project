@@ -4,12 +4,12 @@ Just run this module to check if the ligand fragments are being visualized corre
 
 import matplotlib.pyplot as plt
 
-from chainvisualizer.lig import calc_c_positions_of_frags_in_lig
+from rsuanalyzer.visualize_chain.lig import calc_c_positions_of_frags_in_lig
 
 
 def main():
-    LIG_TYPE = "RL"
-    THETA = 90
+    LIG_TYPE = "RR"
+    THETA = 0
 
     fig, ax = plt.subplots(subplot_kw={'projection': '3d'})
     frags = calc_c_positions_of_frags_in_lig(LIG_TYPE, THETA)
