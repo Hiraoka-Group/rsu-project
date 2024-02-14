@@ -36,7 +36,7 @@ To reproduce the results presented in the paper, run the scripts located in the 
 
 To execute each module within the `analysis` directory, use commands like following:
 ```bash
-python3 -m analysis.chain_visualization.syns1_theta38
+python3 -m analysis.chain_visualization.src.syns1_theta38
 ```
 
 This example command runs the `syns1_theta38.py` script located in the `analysis/chain_visualization/src` directory.
