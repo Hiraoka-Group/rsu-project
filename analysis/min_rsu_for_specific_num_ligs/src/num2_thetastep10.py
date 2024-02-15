@@ -1,6 +1,6 @@
 import os
 
-from rsuanalyzer.analyze_rsu.min_rsu import calc_min_rsu_for_thetas
+from rsuanalyzer.src.analyze_rsu.min_rsu import calc_min_rsu_for_thetas
 
 
 def main():

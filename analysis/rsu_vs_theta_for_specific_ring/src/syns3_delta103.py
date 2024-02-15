@@ -7,7 +7,7 @@ import os
 
 import pandas as pd
 
-from rsuanalyzer.calc_rsu.rsu import calc_rsu
+from rsuanalyzer.src.calc_rsu.rsu import calc_rsu
 
 
 def main():

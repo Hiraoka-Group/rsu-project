@@ -7,9 +7,9 @@ of the RSU analysis, only the positions of the metal atoms are crucial.
 
 import matplotlib.pyplot as plt
 
-from rsuanalyzer.visualize_chain.chain import (calc_carbon_positions,
-                                               calc_metal_positions)
-from rsuanalyzer.visualize_chain.utils import _limit_axis, _transpose_to_xyz
+from regen_results.src.lib.utils import _limit_axis, _transpose_to_xyz
+from rsuanalyzer.src.visualize_chain.chain import (calc_carbon_positions,
+                                                   calc_metal_positions)
 
 
 def main():

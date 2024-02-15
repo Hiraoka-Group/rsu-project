@@ -1,7 +1,7 @@
 import os
 from dataclasses import dataclass
 
-from rsuanalyzer.calc_rsu.rsu import calc_rsu
+from rsuanalyzer.src.calc_rsu.rsu import calc_rsu
 
 
 def main():

@@ -1,6 +1,6 @@
 import os
 
-from rsuanalyzer.analyze_rsu.make_rank_table import make_rank_table
+from rsuanalyzer.src.analyze_rsu.make_rank_table import make_rank_table
 
 
 def main():

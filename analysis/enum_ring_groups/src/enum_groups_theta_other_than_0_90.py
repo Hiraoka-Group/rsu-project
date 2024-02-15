@@ -1,8 +1,8 @@
 import os
 
-from rsuanalyzer.enum_ids.enum_including_dups import \
+from rsuanalyzer.src.enum_ids.enum_including_dups import \
     enum_conf_ids_including_dups
-from rsuanalyzer.enum_ids.exclude_dups import exclude_duplicates
+from rsuanalyzer.src.enum_ids.exclude_dups import exclude_duplicates
 
 
 def main():

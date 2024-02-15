@@ -2,7 +2,7 @@
 name = "rsu-project"
 version = "0.1.0"
 description = "Project on RSU analysis"
-authors = ["Hiraoka Group"]
+authors = ["Hiraoka Group, The University of Tokyo"]
 license = "MIT"
 readme = "README.md"
 packages = [

@@ -1,0 +1,21 @@
+src package
+===========
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   src.analyze_rsu
+   src.calc_rsu
+   src.enum_ids
+   src.visualize_chain
+
+Module contents
+---------------
+
+.. automodule:: src
+   :members:
+   :undoc-members:
+   :show-inheritance:
