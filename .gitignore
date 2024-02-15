@@ -3,4 +3,4 @@ tempCodeRunnerFile.py
 __pycache__/
 .venv/
 *.code-workspace
-docs/build/
+**/docs/build/
