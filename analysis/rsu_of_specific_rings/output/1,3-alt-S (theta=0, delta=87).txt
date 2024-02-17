@@ -1,8 +1,0 @@
-# INPUT
-Name            : 1,3-alt-S
-Conformation ID : RR(FF)RR(BB)RR(FF)RR(BB)
-Theta /deg.     : 0
-Delta /deg.     : 87
-
-# OUTPUT
-Calculated RSU  : 0.28401157814967104
