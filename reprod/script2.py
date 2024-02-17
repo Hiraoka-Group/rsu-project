@@ -1,29 +1,19 @@
-import pandas as pd
-from focused_rings import NAME_TO_ID
-
 import rsuanalyzer as ra
 
 
 def main():
     df1 = ra.create_rsu_vs_theta_df(
-        NAME_TO_ID["syn-S-2"], delta_=87)  # syn-S-1, delta=87
+        "RRFBRLBBRRFBRLBB", delta_=87)  # syn-S-2, delta=87
     df2 = ra.create_rsu_vs_theta_df(
-        NAME_TO_ID["syn-S-2"], delta_=90)  # syn-S-1, delta=87
+        "RRFBRLBBRRFBRLBB", delta_=90)  # syn-S-2, delta=90
     df3 = ra.create_rsu_vs_theta_df(
-        NAME_TO_ID["syn-T-1"], delta_=87)  # syn-S-1, delta=90
+        "RLFFRLFFRLFF", delta_=87)  # syn-T-1, delta=87
     df4 = ra.create_rsu_vs_theta_df(
-        NAME_TO_ID["syn-T-1"], delta_=90)  # syn-S-1, delta=90
+        "RLFFRLFFRLFF", delta_=90)  # syn-T-1, delta=90
 
-    df_con = pd.concat([
-        df1["theta"], df1["RSU"], df2["RSU"], df3["RSU"], df4["RSU"]
-        ], axis=1)
-    df_con = df_con.set_axis(
-        [
-            "theta", "syn-S-2 (delta=87)", "syn-S-2 (delta=90)",
-            "syn-T-1 (delta=87)", "syn-T-1 (delta=90)"],
-        axis="columns", copy=False)
-
-    ra.plot_rsu_vs_theta(df_con)
+    ra.plot_rsu_vs_theta(df1, df2, df3, df4, labels=[
+        "syn-S-2 (delta=87)", "syn-S-2 (delta=90)",
+        "syn-T-1 (delta=87)", "syn-T-1 (delta=90)"])
 
 
 if __name__ == "__main__":

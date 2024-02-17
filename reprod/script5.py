@@ -1,12 +1,10 @@
-import pandas as pd
 import rsuanalyzer as ra
-from focused_rings import NAME_TO_ID
 
 
 def main():
-    df_syns2 = ra.create_rsu_vs_theta_df(NAME_TO_ID["syn-S-2"])
-    df_syns1 = ra.create_rsu_vs_theta_df(NAME_TO_ID["syn-S-1"])
-    df_synt1 = ra.create_rsu_vs_theta_df(NAME_TO_ID["syn-T-1"])
+    df_syns2 = ra.create_rsu_vs_theta_df("RRFBRLBBRRFBRLBB")
+    df_syns1 = ra.create_rsu_vs_theta_df("RRFFLLBBRRFFLLBB")
+    df_synt1 = ra.create_rsu_vs_theta_df("RLFFRLFFRLFF")
 
     dimeric_rings = ra.enum_ring_ids(2)
     df_dimeric = ra.create_min_rsu_vs_theta_df(dimeric_rings)

@@ -14,7 +14,7 @@ RSU Project
    :hidden:
 
    installation
-   scripts
+   reprod
    rsuanalyzer
 
 
@@ -29,8 +29,8 @@ What can you do with the RSU Project?
 ----------------------------------------
 You can use the RSU Project to:
 
-- Reproduce the results presented in the paper (see :doc:`Scripts <scripts>` section)
-- Conduct your own analysis with the RSU Analyzer package (see :doc:`RSU Analyzer <rsuanalyzer>` section)
+- Reproduce the results presented in the paper (see :doc:`Reproducing the Results <reprod>` section)
+- Conduct your own analysis with the RSU Analyzer package (see :doc:`Using the RSU Analyzer <rsuanalyzer>` section)
 
 
 Installation

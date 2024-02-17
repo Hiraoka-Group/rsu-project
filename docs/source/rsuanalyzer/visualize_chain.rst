@@ -1,11 +1,13 @@
-rsuanalyzer.visualize\_chain
+visualize\_chain
 ====================================
 
-.. automodule:: rsuanalyzer.visualize_chain
+visualize\_chain ·
+----------------------------------------------------
+
+.. automodule:: rsuanalyzer.visualize_chain.visualize_chain
    :members:
    :undoc-members:
    :show-inheritance:
-
 
 carbons
 -------------------------------------------
@@ -19,14 +21,6 @@ metals
 ------------------------------------------
 
 .. automodule:: rsuanalyzer.visualize_chain.metals
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-visualize\_chain
-----------------------------------------------------
-
-.. automodule:: rsuanalyzer.visualize_chain.visualize_chain
    :members:
    :undoc-members:
    :show-inheritance:

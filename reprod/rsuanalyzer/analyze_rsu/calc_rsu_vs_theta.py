@@ -36,6 +36,11 @@ def create_rsu_vs_theta_df(
         >>> # 7     70  0.426807
         >>> # 8     80  0.445484
         >>> # 9     90  0.451495
+
+    See Also:
+        You can plot the result using the function
+        :func:`plot_rsu_vs_theta \
+        <rsuanalyzer.analyze_rsu.plot_rsu_vs_theta.plot_rsu_vs_theta>`
     """
     rsu_list = [
         calc_rsu(ring_id, theta, delta_) for theta in thetas]

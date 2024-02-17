@@ -15,8 +15,14 @@ def enum_ring_ids(
     (See examples below.)
 
     See also:
-        - `create_small_rsu_ranking`
-        - `create_min_rsu_vs_theta_df`
+        The result of this function can be used in the following:
+
+        - :func:`create_small_rsu_ranking \
+            <rsuanalyzer.analyze_rsu.small_rsu_ranking.create_small_rsu_ranking>`
+        - :func:`create_min_rsu_vs_theta_df \
+            <rsuanalyzer.analyze_rsu.calc_min_rsu_vs_theta.create_min_rsu_vs_theta_df>`
+
+        See the examples below for more details.
 
     Args:
         num_of_ligs (int): 

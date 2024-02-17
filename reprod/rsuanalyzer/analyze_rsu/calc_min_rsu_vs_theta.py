@@ -18,8 +18,8 @@ def create_min_rsu_vs_theta_df(
             e.g. ``["RRFFRRFF", "RLFFRLFF", "RRFFLLBB"]``.
 
             Hint:
-                You can get the list of conformation IDs of rings
-                by using the function :func:`rsuanalyzer.enum_ring_ids 
+                You can get the list of all conformation IDs of rings
+                by using the function :func:`enum_ring_ids 
                 <rsuanalyzer.enum_ring_ids.enum_ring_ids.enum_ring_ids>`.
             
         thetas (Iterable[float], optional): 
@@ -52,7 +52,7 @@ def create_min_rsu_vs_theta_df(
             >>> # 8     80  RRFFRRFF  0.440357
             >>> # 9     90  RRFFRRFF  0.404339
         
-        Case 2: Using the function :func:`rsuanalyzer.enum_ring_ids \
+        Case 2: Using the function :func:`enum_ring_ids \
                 <rsuanalyzer.enum_ring_ids.enum_ring_ids.enum_ring_ids>`.
             >>> import rsuanalyzer as ra
             >>> trimeric_rings = ra.enum_ring_ids(2)
@@ -71,6 +71,11 @@ def create_min_rsu_vs_theta_df(
             >>> # 90     90  RRFFRRFF  0.404339
             >>> # 
             >>> # [91 rows x 3 columns]
+
+    See Also:
+        You can plot the result using the function
+        :func:`plot_rsu_vs_theta \
+        <rsuanalyzer.analyze_rsu.plot_rsu_vs_theta.plot_rsu_vs_theta>`
     """
     min_rsu_list = [
         _calc_min_rsu_for_specific_theta(ring_ids, theta, delta_)

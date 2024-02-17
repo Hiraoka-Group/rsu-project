@@ -15,14 +15,16 @@ def calc_carbon_positions(
     matplotlib 3D plots. The calculated positions of the carbon atoms
     are represented in the global coordinate system.
 
-    Note:
-        You can use `rsuanalyzer.visualize_chain` to visualize chains
-        more easily.
-
     Caution:
         This function is intended to provide an approximate visualization 
         of the ligand structure. It may not accurately represent the 
         precise positions of the atoms.
+
+    Hint:
+        You can use :func:`visualize_chain \
+        <rsuanalyzer.visualize_chain.visualize_chain.visualize_chain>`\
+        to visualize chains
+        more easily.
 
     Args:
         conf_id (str): The conformation ID of the chain, e.g. "RRFFLL".

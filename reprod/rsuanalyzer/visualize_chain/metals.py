@@ -13,8 +13,10 @@ def calc_metal_positions(
         visualization of the chain structure. It may not accurately 
         represent the precise positions of the atoms.
 
-    Note:
-        You can use `rsuanalyzer.visualize_chain` to visualize chains
+    Hint:
+        You can use :func:`visualize_chain \
+        <rsuanalyzer.visualize_chain.visualize_chain.visualize_chain>`\
+        to visualize chains
         more easily.
 
     Args:

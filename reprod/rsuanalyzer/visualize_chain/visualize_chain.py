@@ -31,6 +31,9 @@ def visualize_chain(
             The tilt angle of the C-C bonds in degrees.
         delta_ (float, optional):
             The N-Pd-N angle in degrees. Default is 87.
+        show (bool, optional):
+            If True, the plot will be shown. Default is True.
+            Set False if you just want to get the figure and the axes object.
 
     Returns:
         tuple[Figure, Axes3D]:
@@ -39,13 +42,14 @@ def visualize_chain(
     Example:
         Case 1:
             Plot the structure of a chain.
+            
             >>> import rsuanalyzer as ra
             >>> ra.visualize_chain("RLFFRLFFRLFF", 34)
-            >>> # The plot will be shown.
         
         Case 2:
             Get the figure and the axes object.
             This is useful when you want to customize the plot.
+
             >>> import matplotlib.pyplot as plt
             >>> import rsuanalyzer as ra
             >>> fig, ax = ra.visualize_chain("RLFFRLFFRLFF", 34, show=False)
