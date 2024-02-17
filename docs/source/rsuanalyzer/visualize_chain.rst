@@ -1,10 +1,13 @@
-rsuanalyzer.visualize\_chain package
+rsuanalyzer.visualize\_chain
 ====================================
 
-Submodules
-----------
+.. automodule:: rsuanalyzer.visualize_chain
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
-rsuanalyzer.visualize\_chain.carbons module
+
+carbons
 -------------------------------------------
 
 .. automodule:: rsuanalyzer.visualize_chain.carbons
@@ -12,7 +15,7 @@ rsuanalyzer.visualize\_chain.carbons module
    :undoc-members:
    :show-inheritance:
 
-rsuanalyzer.visualize\_chain.metals module
+metals
 ------------------------------------------
 
 .. automodule:: rsuanalyzer.visualize_chain.metals
@@ -20,18 +23,10 @@ rsuanalyzer.visualize\_chain.metals module
    :undoc-members:
    :show-inheritance:
 
-rsuanalyzer.visualize\_chain.visualize\_chain module
+visualize\_chain
 ----------------------------------------------------
 
 .. automodule:: rsuanalyzer.visualize_chain.visualize_chain
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: rsuanalyzer.visualize_chain
    :members:
    :undoc-members:
    :show-inheritance:

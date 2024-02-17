@@ -5,7 +5,7 @@ from ._global_vecs_rots import _calc_chain_end
 
 
 def calc_rsu(
-        conf_id_of_ring: str, theta: float, delta_: float
+        conf_id_of_ring: str, theta: float, delta_: float = 87
         ) -> float:
     """Calculate the "Ring Strain per Unit" (RSU) for a ring.
 
@@ -28,8 +28,9 @@ def calc_rsu(
         theta (float): 
             Tilting angle of the two C-C bonds in the ligand
             in degrees. 0 <= theta <= 90.
-        delta_ (float): 
-            N-Pd-N angle in degrees. 0 < delta\_ <= 180.
+        delta_ (float, optional):
+            N-Pd-N angle. (unit: degree) 0 < delta\_ <= 180. 
+            Default is 87.
 
     Returns:
         float: The RSU for the ring.

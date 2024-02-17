@@ -15,15 +15,16 @@ def create_min_rsu_vs_theta_df(
     Args:
         ring_ids (Iterable[str]): 
             The list of conformation IDs of rings, 
-            e.g. ["RRFFRRFF", "RLFFRLFF", "RRFFLLBB"].
+            e.g. ``["RRFFRRFF", "RLFFRLFF", "RRFFLLBB"]``.
 
-            Note:
+            Hint:
                 You can get the list of conformation IDs of rings
-                by using the function `rsuanalyzer.enum_ring_ids`.
+                by using the function :func:`rsuanalyzer.enum_ring_ids 
+                <rsuanalyzer.enum_ring_ids.enum_ring_ids.enum_ring_ids>`.
             
         thetas (Iterable[float], optional): 
             The list of tilt angles of C-C bonds. (unit: degree) 
-            0 <= theta <= 90. Default is range(0, 91, 1).
+            0 <= theta <= 90. Default is ``range(0, 91, 1)``.
         delta_ (float, optional): 
             N-Pd-N angle. (unit: degree) 0 < delta\_ <= 180. 
             Default is 87.
@@ -51,7 +52,8 @@ def create_min_rsu_vs_theta_df(
             >>> # 8     80  RRFFRRFF  0.440357
             >>> # 9     90  RRFFRRFF  0.404339
         
-        Case 2: Using the function `rsuanalyzer.enum_ring_ids`.
+        Case 2: Using the function :func:`rsuanalyzer.enum_ring_ids \
+                <rsuanalyzer.enum_ring_ids.enum_ring_ids.enum_ring_ids>`.
             >>> import rsuanalyzer as ra
             >>> trimeric_rings = ra.enum_ring_ids(2)
             >>> ra.create_min_rsu_vs_theta_df(trimeric_rings)

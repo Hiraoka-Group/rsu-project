@@ -30,7 +30,8 @@ def create_small_rsu_ranking(
     
     Example:
         case 1:
-            >>> create_small_rsu_ranking(
+            >>> import rsuanalyzer as ra
+            >>> ra.create_small_rsu_ranking(
             ...     ["RRFFRRFF", "RRFFLLFF", "RRFFLLBB"], 30, 87)
             >>> # The result will be:
             >>> #        Ring ID       RSU
@@ -40,8 +41,9 @@ def create_small_rsu_ranking(
             >>> # 3     RRFFRRFF  1.038581
         
         case 2:
-            >>> trimeric_rings = enum_ring_ids(3, 40)
-            >>> create_small_rsu_ranking(
+            >>> import rsuanalyzer as ra
+            >>> trimeric_rings = ra.enum_ring_ids(3)
+            >>> ra.create_small_rsu_ranking(
             ...     trimeric_rings, 40, 87, 5)
             >>> # The result will be:
             >>> #            Ring ID       RSU

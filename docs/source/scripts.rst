@@ -1,13 +1,12 @@
-reprod
-======
+Scripts
+==========
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 1
 
-   focused_rings
-   rsuanalyzer
    script1
    script2
    script3
    script4
    script5
+   focused_rings

@@ -49,7 +49,7 @@ def plot_rsu_vs_theta(
     Example:
         Case 1: Plot a single DataFrame
             >>> import rsuanalyzer as ra
-            >>> ra.create_rsu_vs_theta_df("RLFFRLFFRLFF")
+            >>> df1 = ra.create_rsu_vs_theta_df("RLFFRLFFRLFF")
             >>> ra.plot_rsu_vs_theta(df1)
 
         Case 2: Plot multiple DataFrames
