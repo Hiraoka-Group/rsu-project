@@ -1,8 +1,8 @@
 ![Header Image](./images/header.png)
 
-# RSU Analyzer
+# RSU Project
 
-RSU Analyzer is a Python project developed by Hiraoka Laboratory at The University of Tokyo for the scientific paper titled: **Rational design of metal-organic cages to increase the number of components via dihedral angle control** by T. Abe, K. Takeuchi, and <INS>S. Hiraoka</INS>. (DOI: [10.26434/chemrxiv-2024-m8m60](https://doi.org/10.26434/chemrxiv-2024-m8m60))
+RSU Project is a Python project developed by Hiraoka Group at The University of Tokyo for the scientific paper titled: **Rational design of metal-organic cages to increase the number of components via dihedral angle control** by T. Abe, K. Takeuchi, and <INS>S. Hiraoka</INS>. (DOI: [10.26434/chemrxiv-2024-m8m60](https://doi.org/10.26434/chemrxiv-2024-m8m60))
 
 This project focuses on analyzing Ring Strain per Unit (RSU), which acts as an indicator for estimating purely geometric strains in M<sub>*n*</sub>L<sub>*n*</sub> subcomponent rings in M<sub>6</sub>L<sub>4</sub>, M<sub>9</sub>L<sub>6</sub>, and M<sub>12</sub>L<sub>8</sub> assemblies, where L is 1,3,5-tris(4-pyridyl)benzene and M indicates the metal ion that connects two L with an L–M–L angle of 90°. In the analysis, 1,3-di(4-pyridyl)benzene was used as L instead of 1,3,5-tris(4-pyridyl)benzene, and the ring strain was evaluated for M<sub>*n*</sub>L<sub>*n*</sub> rings (*n* = 2–4) with variable L–M–L angles. For more detailed information, please refer to the associated research paper. (DOI: [10.26434/chemrxiv-2024-m8m60](https://doi.org/10.26434/chemrxiv-2024-m8m60))
 
@@ -17,12 +17,12 @@ To install the project, follow these steps:
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/Hiraoka-Group/rsuanalyzer.git
+git clone https://github.com/Hiraoka-Group/rsu-project.git
 ```
 
 2. Navigate to the project directory:
 ```bash
-cd rsuanalyzer
+cd rsu-project
 ```
 
 3. Create a virtual environment:
@@ -75,7 +75,7 @@ This example command runs the `syns1_theta38.py` script located in the `analysis
 
 ## Usage-2: Using RSU Analyzer and Chain Visualizer packages
 Please see the document:
-[Documentation of RSU Analyzer](https://hiraoka-group.github.io/rsuanalyzer-doc/)
+[Documentation of RSU Project](https://hiraoka-group.github.io/rsuanalyzer-doc/)
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
