@@ -27,7 +27,7 @@ For more details on the scripts, please refer to the individual script pages.
    :target: scripts/script1.html
 
 
-:doc:`Script 2 <scripts/script1>`
+:doc:`Script 2 <scripts/script2>`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: _static/images/script2.png
@@ -35,7 +35,7 @@ For more details on the scripts, please refer to the individual script pages.
    :target: scripts/script2.html
 
 
-:doc:`Script 3 <scripts/script1>`
+:doc:`Script 3 <scripts/script3>`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table:: 
@@ -43,7 +43,7 @@ For more details on the scripts, please refer to the individual script pages.
    :header-rows: 1
 
 
-:doc:`Script 4 <scripts/script1>`
+:doc:`Script 4 <scripts/script4>`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: _static/images/script4.png
@@ -51,7 +51,7 @@ For more details on the scripts, please refer to the individual script pages.
    :target: scripts/script4.html
 
 
-:doc:`Script 5 <scripts/script1>`
+:doc:`Script 5 <scripts/script5>`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: _static/images/script5.png
