@@ -34,6 +34,15 @@ def calc_rsu(
 
     Returns:
         float: The RSU for the ring.
+
+    Examples:
+        >>> import rsuanalyzer as ra
+        >>> ra.calc_rsu("RLFFRLFFRLFF", 34)
+        0.2200836694739778
+
+        >>> import rsuanalyzer as ra
+        >>> ra.calc_rsu("RRFFLRFBRRFFLLBB", 26, 103)
+        0.23441964774920904
     """
     # Validate the input.
     if len(conf_id_of_ring) % 4 != 0:

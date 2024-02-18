@@ -16,9 +16,11 @@ This is the documentation for the RSU Analyzer package, which is used in the :do
 What the RSU Analyzer can do
 -----------------------------
 
-- calculating RSU
-- analyzing RSU (e.g. plot the RSU)
-- visualizing chains
+- Calculating RSU
+- Analyzing RSU (e.g. plot the RSU)
+- Visualizing chains
+
+See :doc:`examples <rsuanalyzer/examples>` for some examples, and :doc:`API <rsuanalyzer/api>` for the detailed API.
 
 
 Next Step

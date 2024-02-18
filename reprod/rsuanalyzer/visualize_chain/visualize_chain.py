@@ -69,7 +69,7 @@ def visualize_chain(
         ax.text(*metal_pos, f"{i+1}", color='orange')
 
     # Plot the ligands
-    lig_colors = ['#1f77b4', '#2ca02c', '#ff7f0e', '#9467bd', '#17becf']
+    lig_colors = ['#1f77b4', '#2ca02c', '#ff7f0e', '#9467bd', '#17becf'] * 10
     for lig, lig_colors in zip(frags_of_ligs, lig_colors):
         for frag in lig:
             ax.plot(*_transpose_to_xyz(frag), c=lig_colors)

@@ -16,6 +16,7 @@ RSU Project
    Installation <installation>
    Reproducing Results <reprod>
    RSU Analyzer <rsuanalyzer>
+   Gallery <gallery>
    Appendix <appendix>
 
 
@@ -43,6 +44,30 @@ Tutorials
 
 - :doc:`Reproducing the Results <reprod>`
 - :doc:`Using the RSU Analyzer <rsuanalyzer>`
+
+
+Gallery
+----------------------------------------
+
+.. image:: _static/images/visualized_syn-T-1_theta0.png
+   :target: gallery.html#trimeric-ring-in-pd6l4-cage
+   :width: 30%
+.. image:: _static/images/visualized_1,3-alt-S_theta0.png
+   :target: gallery.html#tetrameric-ring-in-pd6l4-cage
+   :width: 30%
+.. image:: _static/images/visualized_syn-T-1_theta34.png
+   :target: gallery.html#trimeric-ring-in-pd9l6-cage
+   :width: 30%
+.. image:: _static/images/visualized_syn-S-2_theta30.png
+   :target: gallery.html#tetrameric-ring-in-pd9l6-cage
+   :width: 30%
+.. image:: _static/images/visualized_syn-S-1_theta38.png
+   :target: gallery.html#tetrameric-ring-in-pd12l8-cage
+   :width: 30%
+.. image:: _static/images/visualized_dimeric_min_RRFFRRFF_theta90.png
+   :target: gallery.html#dimeric-ring-in-pd12l8-square-sheet
+   :width: 30%
+
 
 Indices and tables
 -------------------------
