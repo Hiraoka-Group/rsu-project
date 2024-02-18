@@ -1,4 +1,4 @@
-Using the RSU Analyzer
+RSU Analyzer
 ========================
 
 .. toctree::
@@ -7,7 +7,7 @@ Using the RSU Analyzer
 
    rsuanalyzer/instruction
    rsuanalyzer/examples
-   rsuanalyzer/modules
+   rsuanalyzer/api
 
 
 This is the documentation for the RSU Analyzer package, which is used in the :doc:`scripts <reprod>`.

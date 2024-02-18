@@ -35,12 +35,12 @@ def plot_rsu_vs_theta(
 
         title (str): 
             The title of the plot. Default is 
-            r"RSU vs tilt angle $\theta$".
+            ``r"RSU vs tilt angle $\\theta$"``.
         xlabel (str): 
             The label of the x-axis. Default is 
-            r"Tilt angle $\theta$ /deg.".
+            ``r"Tilt angle $\\theta$ /deg."``.
         ylabel (str): 
-            The label of the y-axis. Default is "RSU".
+            The label of the y-axis. Default is ``"RSU"``.
 
 
     Returns:

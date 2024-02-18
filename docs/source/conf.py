@@ -18,7 +18,7 @@ author = 'Hiraoka Group, The University of Tokyo'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon']
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon', 'sphinx.ext.githubpages']
 
 templates_path = ['_templates']
 exclude_patterns = []
@@ -38,3 +38,5 @@ html_css_files = [
 
 html_logo = '_static/images/logo.svg'
 html_favicon = '_static/images/favicon.svg'
+
+add_module_names = False

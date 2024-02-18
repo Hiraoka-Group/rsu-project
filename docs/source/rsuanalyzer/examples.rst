@@ -8,6 +8,7 @@ Examples
 
 Here are some examples of how to use the package.
 
+If you don't know how to execute the code, please refer to the :doc:`general instruction <instruction>`.
 
 
 1. Calculate RSU
@@ -31,7 +32,9 @@ The result is below.
 In this example, the RSU of the trimeric ring "RLFFRLFFRLFF" with theta of 34 degrees is calculated. Delta is set to 87 degrees by default, but you can change it by specifying the delta argument, e.g., :python:`ra.calc_rsu("RLFFRLFFRLFF", 34, 90)`.
 
 .. seealso::
-   For more information, please refer to the documentation of the function. :func:`rsuanalyzer.core.calc_rsu.calc_rsu` 
+   See the documentation of the function for more information. 
+   
+   - :func:`rsuanalyzer.calc_rsu <rsuanalyzer.core.calc_rsu.calc_rsu>` 
 
 
 2. Make a Ranking
@@ -84,7 +87,7 @@ The result is shown below.
    :align: center
 
 .. seealso::
-   For more information, please refer to the documentation of the functions. 
+   See the documentation of the functions for more information.
    
    - :func:`rsuanalyzer.create_rsu_vs_theta_df <rsuanalyzer.analyze_rsu.calc_rsu_vs_theta.create_rsu_vs_theta_df>`
    - :func:`rsuanalyzer.plot_rsu_vs_theta <rsuanalyzer.analyze_rsu.plot_rsu_vs_theta.plot_rsu_vs_theta>`
@@ -107,5 +110,6 @@ The result is shown below.
    :align: center
 
 .. seealso::
+   See the documentation of the functions for more information.
 
    :func:`rsuanalyzer.visualize_chain <rsuanalyzer.visualize_chain.visualize_chain.visualize_chain>`

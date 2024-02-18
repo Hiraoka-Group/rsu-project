@@ -13,9 +13,10 @@ RSU Project
    :maxdepth: 1
    :hidden:
 
-   installation
-   reprod
-   rsuanalyzer
+   Installation <installation>
+   Reproducing Results <reprod>
+   RSU Analyzer <rsuanalyzer>
+   Appendix <appendix>
 
 
 About
@@ -37,7 +38,11 @@ Installation
 ----------------------------------------
 To install the RSU Project, please follow the instructions in the :doc:`Installation <installation>` section.
 
+Tutorials
+----------------------------------------
 
+- :doc:`Reproducing the Results <reprod>`
+- :doc:`Using the RSU Analyzer <rsuanalyzer>`
 
 Indices and tables
 -------------------------
