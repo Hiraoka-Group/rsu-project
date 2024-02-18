@@ -5,3 +5,11 @@
 .table {
   margin-bottom: 40px;
 }
+
+.bd-article > #gallery img {
+  margin-bottom: 16px;
+}
+
+#rsu-project #gallery img {
+  margin-bottom: 4px;
+}

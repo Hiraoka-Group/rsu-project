@@ -4,7 +4,7 @@ Script 3
 Result
 --------
 
-CSV file with the following data:
+Table of the calculated RSU values for the different ring conformations of the Pd6L4, Pd9L6 and Pd12L8 complexes.
 
 - syn-T-1  (:math:`\theta` = 0°)
 - 1,3-alt-S  (:math:`\theta` = 0°)
@@ -37,7 +37,17 @@ Go to the directory where the script is located (``rsu-project/reprod``) and run
    
    python3 script3.py
 
-The result will be saved in the same directory in a file called ``script3.csv``.
+This will show the following output:
+
+.. code-block:: none
+
+            name           ring_id  theta    rsu                         description
+   0    syn-T-1      RLFFRLFFRLFF      0  0.243  three membered ring in Pd6L4 (L=1)
+   1  1,3-alt-S  RRFFRRBBRRFFRRBB      0  0.284   four membered ring in Pd6L4 (L=1)
+   2    syn-T-1      RLFFRLFFRLFF     34  0.220  three membered ring in Pd9L6 (L=2)
+   3    syn-S-2  RRFBRLBBRRFBRLBB     30  0.470   four membered ring in Pd9L6 (L=2)
+   4    syn-S-1  RRFFLLBBRRFFLLBB     38  0.010  four membered ring in Pd12L8 (L=2)
+
 
 Source code
 ------------

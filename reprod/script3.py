@@ -21,8 +21,8 @@ def main():
     for name, ring_id, theta, description in rings:
         rsu = ra.calc_rsu(ring_id, theta)
         df.loc[len(df)] = [name, ring_id, theta, f"{rsu:.3f}", description]
-    
-    df.to_csv("script3.csv", index=False)
+
+    print(df)
 
 
 if __name__ == "__main__":

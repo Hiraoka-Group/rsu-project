@@ -32,7 +32,7 @@ In this project, we will create the virtual environment named ``myenv`` in the r
 
 .. note::
 
-   The following instructions are for macOS. If you are using other OS such as Windows or Linux, please refer to the official documentation: https://docs.python.org/3/library/venv.html
+   The following instructions are for Unix-based systems (e.g., Linux, macOS). If you are using other operating systems such as Windows, please refer to the official documentation: https://docs.python.org/3/library/venv.html
 
 
 Create Virtual Environment
