@@ -1,9 +1,7 @@
 import rsuanalyzer as ra
 
 
-def main():
-    thetas = range(0, 91, 1)
-    
+def main():    
     df1 = ra.create_rsu_vs_theta_df(
         "RRFFLLBBRRFFLLBB", delta_=103)  # syn-S-1, delta=103
     df2 = ra.create_rsu_vs_theta_df(

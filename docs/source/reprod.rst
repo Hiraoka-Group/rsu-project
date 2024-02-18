@@ -13,8 +13,11 @@ Reproducing the Results
 
 Overview
 --------------------
-Here are the results of the scripts.
-For more details, please refer to the individual pages.
+Here are the outputs of the scripts used to generate the results in the paper.
+You can reproduce the results by running each script. 
+
+For more details on the scripts, please refer to the individual script pages.
+
 
 :doc:`Script 1 <scripts/script1>`
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

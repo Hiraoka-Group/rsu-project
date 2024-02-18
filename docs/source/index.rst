@@ -16,6 +16,7 @@ RSU Project
    installation
    reprod
    rsuanalyzer
+   appendix
 
 
 About
