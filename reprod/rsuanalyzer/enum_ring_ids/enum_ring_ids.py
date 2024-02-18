@@ -38,9 +38,10 @@ def enum_ring_ids(
 
     Examples:
         Simple examples:
-            >>> enum_conf_ids(1, 30)
+            >>> import rsuanalyzer as ra
+            >>> ra.enum_conf_ids(1, 30)
             ['RRFF', 'RRFB', 'RRBF', 'RRBB', 'RLFF', ..., 'LLBB'] (16 items)
-            >>> enum_conf_ids(2, 30)
+            >>> ra.enum_conf_ids(2, 30)
             ['RRFFRRFF', ... 'LLBBLLBB'] (256 items)
 
         Create a rank table of RSU:

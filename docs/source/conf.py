@@ -38,3 +38,5 @@ html_css_files = [
 
 html_logo = '_static/images/logo.svg'
 html_favicon = '_static/images/favicon.svg'
+
+add_module_names = False

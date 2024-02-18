@@ -1,4 +1,4 @@
-Reproducing the Results
+Reproducing Results
 ==========================
 
 .. toctree::

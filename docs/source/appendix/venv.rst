@@ -38,13 +38,15 @@ In this project, we will create the virtual environment named ``myenv`` in the r
 Create Virtual Environment
 --------------------------
 
-Make sure your current working directory is the root of the project `rsu-project`, then run the following command:
+You probably already have a virtual environment created through the :doc:`installation of the project dependencies <../installation>`. If you already have a virtual environment, you don't need to create it again. You can skip this section and go to the next section.
+
+Make sure your current working directory is the root of the project ``rsu-project``, then run the following command:
 
 .. code-block:: bash
 
    python -m venv .venv
 
-This will create a folder named `.venv` in the root of the project.
+This will create a folder named ``.venv`` in the root of the project.
 
 Once the virtual environment is created, you don't need to create it again. You can activate and deactivate it whenever you want.
 
@@ -52,13 +54,13 @@ Once the virtual environment is created, you don't need to create it again. You 
 Activate Virtual Environment
 ------------------------------
 
-To activate the virtual environment, run the following command from the root of the project `rsu-project`:
+To activate the virtual environment, run the following command from the root of the project ``rsu-project``:
 
 .. code-block:: bash
 
    source .venv/bin/activate
 
-Or, if your current working directory is `rsu-project/reprod`, you can run the following command:
+Or, if your current working directory is ``rsu-project/reprod``, you can run the following command:
 
 .. code-block:: bash
 
