@@ -16,14 +16,14 @@ You can use the RSU Project to:
 
 
 ## Installation
-To install the project, follow the instructions in the [documentation](https://hiraoka-group.github.io/rsuanalyzer-doc/installation.html).
+To install the project, follow the instructions in the [documentation](https://hiraoka-group.github.io/rsu-project-doc/installation.html).
 
 
 ## Usage
 Please refer to the corresponding section in the documentation:
 
-- [How to reproduce results](https://hiraoka-group.github.io/rsuanalyzer-doc/reprod.html)
-- [How to use the RSU Analyzer](https://hiraoka-group.github.io/rsuanalyzer-doc/rsuanalyzer.html)
+- [How to reproduce results](https://hiraoka-group.github.io/rsu-project-doc/reprod.html)
+- [How to use the RSU Analyzer](https://hiraoka-group.github.io/rsu-project-doc/rsuanalyzer.html)
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
